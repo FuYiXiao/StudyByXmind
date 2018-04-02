@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <title>008test_template_string</title>
+
+    <meta name="description" content="不超过150个字符">
+    <meta name="keywords" content="">
+    <meta name="author" content="name, email@gmail.com">
+
+    <!-- 为移动设备添加 viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+
+
+<script type="text/javascript">
+
+var boy={
+    name:"mooshine",
+    height:"175",
+    age:"30",
+    country:"china",
+    province:"hebei",
+    city:"shijiazhuang",
+    area:"zhaoxian"
+};
+function mytag(strings,...values){
+
+    console.log(strings);
+    console.log(values);
+
+    var arr=[],
+            i= 0,
+            len=values.length;
+
+    for(;i<len;i++){
+        arr.push(strings[i]);
+        arr.push(values[i]);
+    }
+
+   return arr.join("");
+}
+
+var str=mytag`age is ${boy.age},country is ${boy.country}`;
+
+console.log(str);
+
+
+
+console.log('xt'.repeat(3));
+
+
+let desc  = function(name='zfpx',age=8){
+    console.log(`${name} is ${age} years old!`);
+}
+desc('tt130');
+
+
+</script>
+
+
+
+</body>
+</html>

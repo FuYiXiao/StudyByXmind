@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <title>013test_Symbol</title>
+
+    <meta name="description" content="不超过150个字符">
+    <meta name="keywords" content="">
+    <meta name="author" content="name, email@gmail.com">
+
+    <!-- 为移动设备添加 viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+
+
+<script type="text/javascript">
+
+
+ let a = Symbol();       
+ console.log(a); // symbol()
+ console.log(typeof a) // 它的类型就是 symbol
+
+ // 我们也可以为symbol 类型加一些参数(做一些标记号) 用来区分
+let b = Symbol("b")
+console.log(b)  // symbol(b)
+
+
+
+
+</script>
+
+
+</body>
+</html>

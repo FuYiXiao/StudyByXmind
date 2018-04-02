@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <title>011test_object.assign</title>
+
+    <meta name="description" content="不超过150个字符">
+    <meta name="keywords" content="">
+    <meta name="author" content="name, email@gmail.com">
+
+    <!-- 为移动设备添加 viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+
+
+<script type="text/javascript">
+
+
+var nameObj = {
+    name:'zfpx',
+    sex:{"sex":"man"}
+};
+
+var ageObj = {age:8};
+
+var obj = {};
+
+Object.assign(obj,nameObj,ageObj);
+
+console.log(obj);
+
+
+//克隆对象
+function clone (obj) {
+  return Object.assign({}, obj);
+}
+
+let nameO = clone(nameObj);
+nameO.sex.sex='women';
+
+console.log( clone(nameObj) );
+console.log( nameObj );
+
+
+</script>
+
+
+</body>
+</html>

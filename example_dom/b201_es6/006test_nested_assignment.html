@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <title>006test_nested_assignment</title>
+
+    <meta name="description" content="不超过150个字符">
+    <meta name="keywords" content="">
+    <meta name="author" content="name, email@gmail.com">
+
+    <!-- 为移动设备添加 viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+
+<script type="text/javascript">
+
+{
+    let [x, [y], z] = [1, [2.1, 2.2]];
+    console.log(x, y, z);
+
+}
+
+
+
+
+{
+    let [x, [y,z]] = [1, [2.1, 2.2]];
+    console.log(x,y,z);
+}
+
+{
+    let [, , x] = [1, 2, 3];
+    console.log(x);
+}
+
+{
+
+    let obj = {name:'zfpx',age:8,sex:'girl'};
+
+    //对象里的name属性的值会交给name这个变量，age的值会交给age这个变量
+    let {name,age,sex1} = obj;
+    console.log("@:"+ name,age,sex1);
+
+}
+
+{
+
+    let obj = { name:'zfpx' , age:8 };
+    //对象里的name属性的值会交给myname这个变量，age的值会交给myage这个变量
+    let {name,age,sex1} = obj;
+    let {name: myname, age: myage} = obj;
+
+    console.log("@:"+ name,age,myname,myage);
+
+
+}
+</script>
+
+</body>
+</html>

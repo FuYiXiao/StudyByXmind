@@ -13,6 +13,8 @@ module.exports = {
     //如果按需加载，运行时加载的公共路径设置
     assetsPublicPath: '/',
 
+    //静态资源的存放目录
+    assetsSubDirectory: 'static',
   },
 
   // 生产环境的参数
@@ -22,8 +24,10 @@ module.exports = {
     assetsRoot:path.resolve(__dirname, '../dist'),
 
     //如果按需加载，运行时加载的公共路径设置
-    assetsPublicPath: '/',
+    assetsPublicPath: './',
     
+    //静态资源的存放目录
+    assetsSubDirectory: 'static',
   }
 
 }

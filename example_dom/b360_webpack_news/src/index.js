@@ -1,9 +1,8 @@
 import _ from 'lodash';
 
 //import './style.css';
-
-require('./style.css');
-
+//require('./style.css');
+require('./timg.jpg');
 
 function component() {
 

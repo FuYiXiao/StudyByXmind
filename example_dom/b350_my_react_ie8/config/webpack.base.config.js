@@ -4,7 +4,12 @@
 const path = require('path')
 // 开发生产的配置
 const config = require('./config.js')
+// webpack 工具库
 const webpack = require('webpack');
+
+//公共工具
+const utils = require('./utils');
+
 
 module.exports = {
 
@@ -33,6 +38,16 @@ module.exports = {
   //组件
   module: {
     rules: [
+      // 图片的加载
+      {
+        test: /\.(png|jpg|jpeg|gif|svg|woff|woff2)$/,
+        loader: 'url-loader',
+        query: {
+          //name: 'images/[path].[name].[ext]',
+          name:  utils.assetsPath('images/[name].[hash:4].[ext]') ,
+          limit: 10000,
+        },
+      },
       // .css 文件的加载处理
       {
         test: /\.css$/,
@@ -56,6 +71,7 @@ module.exports = {
           }
         ]
       },
+
       // .js文件的处理 es3ify-loader 放在前面，猜测表示的是后处理
       {
         test: /\.js$/,

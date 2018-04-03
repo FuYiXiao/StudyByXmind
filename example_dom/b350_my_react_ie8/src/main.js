@@ -1,31 +1,39 @@
 
 //require('core-js');
-//require('es6-promise');
+
 // require('core-js/fn/object/assign');
-//require('fetch-ie8');
+
 //require('prop-types');
 //require('fetch-jsonp');
 //require('babel-polyfill');
-// require('babel-polyfill');
 
 //import {sex} from "./sub.js"; //抱错
 //console.log(sex); //抱错
 //require('core-js'); //抱错
+// require('es6-promise');
+// require('es5-shim');
+// require('es5-shim/es5-sham');
+// require('console-polyfill');
+// require('fetch-ie8');
+// require('core-js/fn/object/assign');
 
+// require('lodash'); //抱错
+//require('core-js');
+//require('babel-polyfill')
+//require('es6-promise');
+//require('fetch-ie8');
 require('es5-shim');
 require('es5-shim/es5-sham');
 require('console-polyfill');
-require('es6-promise');
-require('fetch-ie8');
-require('core-js/fn/object/assign');
+//require('lodash/fp') 这种加载方式只有第四版本会有
+// var _ = require('lodash')
+//var fp = require('lodash'); 
+// import _ from 'lodash'; //抱错
 
-//import _ from 'lodash'; //抱错
-//require('lodash'); //抱错
 //console.log(require('lodash').VERSION);
 
 //require('./sub.js'); //抱错
 require('./static/scss/pub.scss');
-
 //require('./static/css/pub.css');
 
 function component() {

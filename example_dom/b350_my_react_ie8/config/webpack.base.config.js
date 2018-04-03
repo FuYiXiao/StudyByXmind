@@ -1,7 +1,10 @@
 'use strict'
 
+// 路径插件
 const path = require('path')
+// 开发生产的配置
 const config = require('./config.js')
+const webpack = require('webpack');
 
 module.exports = {
 
@@ -10,7 +13,8 @@ module.exports = {
 
   //配置入口文件
   entry: {
-    main: './src/main.js'
+    main: './src/main.js',
+    // 'lodash': 'lodash'],
   },
 
   output: {
@@ -26,10 +30,10 @@ module.exports = {
       ? config.build.assetsPublicPath
       : config.dev.assetsPublicPath
   },
-
+  //组件
   module: {
     rules: [
-
+      // .css 文件的加载处理
       {
         test: /\.css$/,
         use: [
@@ -39,7 +43,7 @@ module.exports = {
           }
         ]
       },
-
+      // .scss 文件的加载处理
       {
         test: /\.scss$/,
         use: [
@@ -52,22 +56,27 @@ module.exports = {
           }
         ]
       },
-      
-      {
-        test: /\.js$/,
-        //exclude: /node_modules/,
-        use: ['es3ify-loader','babel-loader']
-      }
-      
-      /*
+      // .js文件的处理 es3ify-loader 放在前面，猜测表示的是后处理
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loaders: ['es3ify-loader','babel-loader'],
-      },
+        use: [
+          {
+            loader: 'es3ify-loader'
+          },
+          { 
+            loader: 'babel-loader'
+          }
+        ]
+      }    
+      /* 写法方式一：可以通过
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: ['es3ify-loader','babel-loader']
+      }
       */
-
-      /*
+      /* 写法方式二：可以通过
       {
         test: /\.js$/,
         use: [
@@ -83,7 +92,14 @@ module.exports = {
       */
 
     ]
-  }
+  },
+  plugins : [
+    /*
+    new webpack.optimize.CommonsChunkPlugin({
+        names : ['lodash']
+    }),
+    */
+  ]
 
 
 }

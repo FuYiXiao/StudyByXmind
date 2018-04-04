@@ -68,7 +68,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 // import './1.jpg';  //运行成功
- __webpack_require__(1);  //运行成功
+__webpack_require__(1);  //运行成功
 
 function component() {
     var element = document.createElement('div');
@@ -82,7 +82,7 @@ document.body.appendChild(component());
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "c2809bef0b6e59c6eb9ad4346dc6d484.jpg";
+module.exports = __webpack_require__.p + "2166872c69a0c9d070e66889cb6189c0.jpg";
 
 /***/ })
 /******/ ]);

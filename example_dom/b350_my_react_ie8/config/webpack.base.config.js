@@ -2,14 +2,21 @@
 
 // 路径插件
 const path = require('path')
+
 // 开发生产的配置
 const config = require('./config.js')
+
 // webpack 工具库
 const webpack = require('webpack');
 
 //公共工具
 const utils = require('./utils');
 
+//加载图片压缩插件
+const ImageminPlugin = require('imagemin-webpack-plugin').default;
+
+//加载复制插件
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
 
@@ -109,12 +116,32 @@ module.exports = {
 
     ]
   },
+  //插件
   plugins : [
-    /*
-    new webpack.optimize.CommonsChunkPlugin({
-        names : ['lodash']
-    }),
-    */
+
+    // 将图片拷贝，以备压缩
+    new CopyWebpackPlugin(
+      [
+        {
+          from:path.resolve(__dirname,'../src/static/images_original/'),
+          to:  path.resolve(__dirname,'../src/static/images'),
+          force: true
+        }
+      ],
+      {
+        debug: true,
+        ignore: [],
+        copyUnmodified:true 
+      }
+    ),
+
+    //图片压缩插件
+    new ImageminPlugin({
+      //开发模式不压缩
+      disable:process.env.NODE_ENV !== 'production',
+      test: /\.(jpe?g|png|gif|svg)$/i 
+    })
+    
   ]
 
 

@@ -1,0 +1,19 @@
+{
+  "name": "webpacktest4",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "file-loader": "1.1.11",
+    "imagemin-mozjpeg": "^7.0.0",
+    "imagemin-webpack-plugin": "^2.1.1",
+    "webpack": "^3.0.0"
+  }
+}

@@ -36,6 +36,8 @@ require('console-polyfill');
 require('./static/scss/pub.scss');
 //require('./static/css/pub.css');
 
+require('./test');
+
 function component() {
 
 	//'use strict'

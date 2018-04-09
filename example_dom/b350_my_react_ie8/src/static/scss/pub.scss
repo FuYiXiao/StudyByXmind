@@ -8,6 +8,9 @@
 /*页面的整体框架*/
 @import "./modules/_wrapper.scss";
 
+/*页面的整体框架*/
+@import "../iconfont/iconfont.scss";
+
 $font:16px;
 body{
 	font-size: $font;

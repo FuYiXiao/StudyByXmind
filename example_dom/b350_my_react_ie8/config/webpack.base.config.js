@@ -18,6 +18,9 @@ const ImageminPlugin = require('imagemin-webpack-plugin').default;
 //加载复制插件
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
+//独立CSS文件
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+
 module.exports = {
 
   // entry 配置项的根目录
@@ -28,7 +31,7 @@ module.exports = {
     main: './src/main.js',
     // 'lodash': 'lodash'],
   },
-
+  devtool: 'inline-source-map',
   output: {
 
     //输出 构建内容 的根路径
@@ -45,17 +48,36 @@ module.exports = {
   //组件
   module: {
     rules: [
+      //字体文件的输出
+      {
+        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+        loader: 'url-loader',
+        options: {
+          //10K限制
+          limit: 10000,
+          //按路径输出
+          //name: 'iconfont/[path].[name].[ext]',
+          //按hash输出
+          // name: utils.assetsPath('iconfont/[name].[hash:7].[ext]') ,
+          name: utils.assetsPath('iconfont/[name].[ext]') 
+        }
+      },
       // 图片的加载
       {
         test: /\.(png|jpg|jpeg|gif|svg|woff|woff2)$/,
         loader: 'url-loader',
         query: {
+          //按路径输出
           //name: 'images/[path].[name].[ext]',
-          name:  utils.assetsPath('images/[name].[hash:4].[ext]') ,
+          //按hash输出
+          //name:  utils.assetsPath('images/[name].[hash:4].[ext]') ,
+          name:utils.assetsPath('images/[name].[ext]') ,
+          //10K限制
           limit: 10000,
         },
       },
       // .css 文件的加载处理
+      /*
       {
         test: /\.css$/,
         use: [
@@ -65,7 +87,16 @@ module.exports = {
           }
         ]
       },
+      */
+      {
+        test: /\.css$/,
+        use: ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          use: "css-loader"
+        })
+      },
       // .scss 文件的加载处理
+      /*
       {
         test: /\.scss$/,
         use: [
@@ -78,7 +109,32 @@ module.exports = {
           }
         ]
       },
-
+      */
+      /*
+      {
+        test: /\.css$/,
+        use: ExtractTextPlugin.extract([
+          { loader: 'style-loader'},
+          {
+            loader: 'css-loader'
+          },
+          {
+            loader: "sass-loader?outputStyle=compressed&includePaths[]="+ path.resolve(__dirname, "../node_modules/compass-mixins/lib") 
+          }
+        ])
+      },
+      */
+      {
+        test: /\.scss$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          //resolve-url-loader may be chained before sass-loader if necessary
+          use: [
+            'css-loader?sourceMap=true', 
+            "sass-loader?sourceMap=true&outputStyle=compressed&includePaths[]="+ path.resolve(__dirname, "../node_modules/compass-mixins/lib")
+          ]
+        })
+      },
       // .js文件的处理 es3ify-loader 放在前面，猜测表示的是后处理
       {
         test: /\.js$/,
@@ -91,7 +147,7 @@ module.exports = {
             loader: 'babel-loader'
           }
         ]
-      }    
+      },
       /* 写法方式一：可以通过
       {
         test: /\.js$/,
@@ -113,13 +169,14 @@ module.exports = {
         ]
       }
       */
-
+ 
     ]
   },
   //插件
   plugins : [
 
     // 将图片拷贝，以备压缩
+    /*
     new CopyWebpackPlugin(
       [
         {
@@ -134,12 +191,21 @@ module.exports = {
         copyUnmodified:true 
       }
     ),
+    */
 
     //图片压缩插件
     new ImageminPlugin({
       //开发模式不压缩
       disable:process.env.NODE_ENV !== 'production',
       test: /\.(jpe?g|png|gif|svg)$/i 
+    }),
+
+    //独立CSS文件
+    new ExtractTextPlugin({
+      filename:  (getPath) => {
+         return getPath(utils.assetsPath('css/[name].css')).replace('css/js', 'css');
+      },
+      allChunks: true
     })
     
   ]

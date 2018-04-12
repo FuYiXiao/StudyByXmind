@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <title>Style Guide</title>
+
+    <meta name="description" content="不超过150个字符">
+    <meta name="keywords" content="">
+    <meta name="author" content="name, email@gmail.com">
+
+    <!-- 为移动设备添加 viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+
+<script type="text/javascript">
+
+/*
+* 计算含中文字符串的实际长度，或者截取字符串
+* @param str {stirng} 需要处理计算的字符串
+* @param cutStr {Number} 需要截取到第几位,
+* @return 情况一： 如果有参数二，返回一个对象记录截取信息
+* @return 情况二： 如果没有参数二，返回字符串真实长度
+*/
+var GetLengthByCodeOrCut = function(str,cutStr) {
+  cutStr = cutStr?cutStr:0;
+  var realLength = 0, len = str.length, charCode = -1;
+  var ifCut=false;
+  var nowStr="";
+  if(!isNaN(cutStr)&&cutStr!=0){
+    ifCut=true;
+  }
+  for (var i = 0; i < len; i++) {
+    charCode = str.charCodeAt(i);
+    if (charCode >= 0 && charCode <= 128) {
+       realLength += 1;
+    }else{
+       realLength += 2;
+    }
+    nowStr=nowStr+str.charAt(i);
+    if(ifCut&&cutStr<=realLength){
+      return {
+        hasCut:true,
+        cutLength:cutStr,
+        realLength:realLength,
+        cutStr:nowStr,
+        fullStr:str
+      };
+    }
+  }
+  if(ifCut&&cutStr>realLength){
+      return {
+        hasCut:false,
+        fullStr:str
+      };
+  }else{
+    return realLength;
+  }
+};
+
+
+var GetLengthByWei = function(str) {
+  var l = str.length;
+  var blen = 0;
+  for(i=0; i<l; i++) {
+    if ((str.charCodeAt(i) & 0xff00) != 0) {
+      blen ++;
+    }
+    blen ++;
+  }
+  return blen;
+};
+
+var GetLengthByReg = function(str) {
+  return str.replace(/[\u0391-\uFFE5]/g,"aa").length;
+};
+
+
+var Str1="aaaa";
+
+var Str2 = 'aa阿aa,';
+
+var Str3 = 'aa，aa。我';
+
+console.info(Str1);
+console.log( GetLengthByCodeOrCut(Str1), GetLengthByWei(Str1), GetLengthByReg(Str1) ) ;
+
+console.info(Str2);
+console.log( GetLengthByCodeOrCut(Str2), GetLengthByWei(Str2), GetLengthByReg(Str2) ) ;
+
+console.info(Str3);
+console.log( GetLengthByCodeOrCut(Str3), GetLengthByWei(Str3), GetLengthByReg(Str3) ) ;
+console.log( GetLengthByCodeOrCut(Str3,3) ) ;
+console.log( GetLengthByCodeOrCut(Str3,100) ) ;
+
+</script>
+
+
+</body>
+</html>

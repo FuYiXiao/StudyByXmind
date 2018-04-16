@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <title>Style Guide</title>
+
+    <meta name="description" content="不超过150个字符">
+    <meta name="keywords" content="">
+    <meta name="author" content="name, email@gmail.com">
+
+    <!-- 为移动设备添加 viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+
+<script type="text/javascript">
+
+/*转化为货币格式
+ @param number 需要转换的数值
+ @param ifMoney 当前数据，是否在个为单位时，保留两位小数点
+ @param places 小数点保留位数
+ @param symbol 数值前面的单位
+ @param thousand 每三位数字之间的分隔符号
+ @param decimal 小数点的符号
+ @return 转换后的数值
+ * */
+function formatNumUnit(number, ifMoney, places, symbol, thousand, decimal) {
+
+	number = number || 0;
+	var unit ="";
+	//小数点保留位数
+	places = !isNaN(places = Math.abs(places)) ? places : 2;
+	//单位
+	symbol = symbol !== undefined ? symbol : "";
+	//是否在个为单位时，保留两位小数点
+	ifMoney = ifMoney !== undefined ? ifMoney : true;
+	//每三位的区分符号
+	thousand = thousand || ",";
+	//小数点
+	decimal = decimal || ".";
+
+	var negative = number < 0 ? "-" : "";
+	
+	if(number>100000000){
+		unit="亿";
+		number=number/100000000;
+	}else{
+		if(number>10000){
+			unit="万"
+			number=number/10000;
+		}else{
+			unit="";
+			if(!ifMoney){
+				places=0;
+			}
+		}
+	}
+	
+	//保留两位小数
+	var	i = parseInt(number = Math.abs(+number || 0).toFixed(places), 10) + "",
+	//每三位之后的位数
+		j = (j = i.length) > 3 ? j % 3 : 0;
+
+	return symbol + negative + (j ? i.substr(0, j) + thousand : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + thousand) + (places ? decimal + Math.abs(number - i).toFixed(places).slice(2) : "") + unit;
+
+}
+
+console.log( formatNumUnit(123456789)   ) ;
+
+console.log( formatNumUnit(12345)   ) ;
+
+console.log( formatNumUnit(1234,false)   ) ;
+console.log( formatNumUnit(1234,true)   ) ;
+
+
+</script>
+
+
+</body>
+</html>

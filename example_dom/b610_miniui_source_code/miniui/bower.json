@@ -1,0 +1,15 @@
+{
+
+  "name": "sui-miniui",
+  "version": "1.0.004",
+  "authors": [
+    "shitao",
+    "pzf"
+  ],
+  "main": "./mini-all-source.js",
+  "description": "sui-miniui",
+  "dependencies": {
+    "jquery": "1.10.0"
+   }
+
+}

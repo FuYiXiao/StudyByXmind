@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title>Style Guide</title>
+
+  <meta name="description" content="不超过150个字符">
+  <meta name="keywords" content="">
+  <meta name="author" content="name, email@gmail.com">
+
+  <!-- 为移动设备添加 viewport -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script type="text/javascript" src="jquery.min.js"></script>
+</head>
+<body>
+
+<script type="text/javascript">
+
+/*递归复制：5种主要的数据类型(包括Number、String、Object、Array、Boolean)进行值递归方法复制
+ @param obj  {任何类型} 传入的参数，需要复制的对象
+ @return 转换后的数值
+ * */
+function cloneEverything(obj) {
+  var o;
+  switch (typeof obj) {
+    case "undefined":
+      break;
+    case "string":
+      o = obj + "";
+      break;
+    case "number":
+      o = obj - 0;
+      break;
+    case "boolean":
+      o = obj;
+      break;
+    case "object": // object 分为两种情况 对象（Object）或数组（Array）
+      if (obj === null) {
+        o = null;
+      } else {
+        if (Object.prototype.toString.call(obj).slice(8, -1) === "Array") {
+          o = [];
+          for (var i = 0; i < obj.length; i++) {
+            o.push(cloneEverything(obj[i]));
+          }
+        } else {
+          o = {};
+          for (var k in obj) {
+            o[k] = cloneEverything(obj[k]);
+          }
+        }
+      }
+      break;
+    default:
+      //一般为函数的情况
+      o = obj;
+      break;
+  }
+  return o;
+}
+
+var str1="nihao";
+var str2 = cloneEverything(str1);
+console.log("str1==str2:"+(str1==str2));
+
+var array1=[{"a:":"b"},"c",{"d":"e"}];
+var array2 = cloneEverything(array1);
+console.log(array2);
+console.log("array1==array2:"+(array1==array2));
+
+
+var obj1={
+	a:"a",
+	b:{
+		c:"c"
+	}
+};
+var obj2 = cloneEverything(obj1);
+console.log(obj2);
+console.log("obj1==obj2:"+(obj1==obj2));
+
+
+function Car(sColor,iDoors,iMpg) {
+  this.color = sColor;
+  this.doors = iDoors;
+  this.mpg = iMpg;
+  this.drivers = new Array("Mike","John");
+  if (typeof Car._initialized == "undefined") {
+    Car.prototype.showColor = function() {
+      alert(this.color);
+    };
+    Car.prototype.name = "OK";    
+    Car._initialized = true;
+  }
+}
+
+
+
+car1 = new Car(1,2,3);
+var car2 = cloneEverything(car1);
+console.log(car1);
+console.log(car2);
+console.log("car1==car2:"+(car1==car2));
+
+
+car3 = new Car("a","b","c");
+var car4 = $.extend(true,{},car3);
+console.log(car3);
+console.log(car4);
+console.log("car3==car4:"+(car3==car4));
+
+
+</script>
+
+
+</body>
+</html>

@@ -31,7 +31,17 @@ module.exports = {
     main: './src/main.js',
     // 'lodash': 'lodash'],
   },
+  
+  // inline-source-map 和 source-map 都可以
   devtool: 'inline-source-map',
+
+  //配置打包时的相对路径
+  resolve:{
+   alias: {
+      "Static": path.resolve(__dirname, "../src/static/"),
+   }
+  },
+
   output: {
 
     //输出 构建内容 的根路径
@@ -45,16 +55,29 @@ module.exports = {
       ? config.build.assetsPublicPath
       : config.dev.assetsPublicPath
   },
+
   //组件
   module: {
     rules: [
+      //IE 浏览器的兼容文件
+      {
+        test: /\.(htc)$/,
+        loader: 'file-loader',
+        options: {
+          //publicPath 自身独立的 文件内的引用 URL 前缀
+          publicPath:utils.prePublicPath("htc"),
+          name: utils.fun_assetsPath('css/[name].[ext]') 
+        }
+      },
       //字体文件的输出
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
         loader: 'url-loader',
         options: {
           //10K限制
-          limit: 10000,
+          limit: process.env.NODE_ENV === 'production'? config.build.supportIE8:config.dev.supportIE8,
+          //publicPath 自身独立的 文件内的引用 URL 前缀
+          publicPath:utils.prePublicPath("font"),
           //按路径输出
           //name: 'iconfont/[path].[name].[ext]',
           //按hash输出
@@ -67,6 +90,8 @@ module.exports = {
         test: /\.(png|jpg|jpeg|gif|svg|woff|woff2)$/,
         loader: 'url-loader',
         query: {
+          //publicPath 自身独立的 文件内的引用 URL 前缀  
+          publicPath:utils.prePublicPath("images"),
           //按路径输出
           //name: 'images/[path].[name].[ext]',
           //按hash输出
@@ -172,6 +197,7 @@ module.exports = {
  
     ]
   },
+
   //插件
   plugins : [
 
@@ -209,6 +235,5 @@ module.exports = {
     })
     
   ]
-
 
 }

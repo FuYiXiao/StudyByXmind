@@ -15,6 +15,28 @@ module.exports = {
 
     //静态资源的存放目录
     assetsSubDirectory: 'static',
+
+    //是否支持IE8
+    supportIE8:true,
+
+    //图片的路径
+    //attr_str_imagesPath:'',
+
+    //CSS的路径
+    //attr_str_cssPath:'',
+
+    //js的路径
+    //attr_str_jsPath:'',
+
+    //font的路径
+    //attr_str_fontPath:'',
+
+    //htc的路径
+    //attr_str_htcPath:'',
+
+    //template的路径
+    //attr_str_templatePath:'',
+
   },
 
   // 生产环境的参数
@@ -28,6 +50,28 @@ module.exports = {
     
     //静态资源的存放目录
     assetsSubDirectory: 'static',
+
+    //是否支持IE8
+    supportIE8:true,
+    
+    //图片的路径
+    //attr_str_imagesPath:'',
+
+    //CSS的路径
+    //attr_str_cssPath:'',
+
+    //js的路径
+    //attr_str_jsPath:'',
+
+    //font的路径
+    //attr_str_fontPath:'',
+
+    //htc的路径
+    //attr_str_htcPath:'',
+
+    //template的路径
+    //attr_str_templatePath:'',   
+
   }
 
 }

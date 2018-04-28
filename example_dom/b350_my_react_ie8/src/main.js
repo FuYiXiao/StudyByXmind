@@ -33,24 +33,24 @@ require('console-polyfill');
 //console.log(require('lodash').VERSION);
 
 //require('./sub.js'); //抱错
-require('./static/scss/pub.scss');
+require('Static/scss/pub.scss');
 //require('./static/css/pub.css');
 
-require('./test');
+require('Static/../test.js');
 
 function component() {
 
-	//'use strict'
+    //'use strict'
 
     const element = document.createElement('div');
     //element.innerHTML = MM.join(['Hello', 'webpack'], ' ');
 
     ["3","4"].forEach((index)=>{
-    	console.log(index);
+        console.log(index);
     });
 
     const x = {class: 2,};
-	const T = x.class;
+    const T = x.class;
     element.innerHTML = "fuck";
 
     //element.classList.add('hello');

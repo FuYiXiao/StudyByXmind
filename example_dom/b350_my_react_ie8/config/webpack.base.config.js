@@ -1,10 +1,10 @@
 'use strict'
 
 // 路径插件
-const path = require('path')
+const path = require('path');
 
 // 开发生产的配置
-const config = require('./config.js')
+const config = require('./config.js');
 
 // webpack 工具库
 const webpack = require('webpack');
@@ -12,14 +12,17 @@ const webpack = require('webpack');
 //公共工具
 const utils = require('./utils');
 
-//加载图片压缩插件
-const ImageminPlugin = require('imagemin-webpack-plugin').default;
-
 //加载复制插件
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 //独立CSS文件
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+
+//清空目录插件
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+
+// 生成HMTL插件
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
 
@@ -28,20 +31,20 @@ module.exports = {
 
   //配置入口文件
   entry: {
-    main: './src/main.js',
+    //"btn_reset": './src/main.js',
+    //"btn_reset": './src/static/scss/btn_reset.scss',
     // 'lodash': 'lodash'],
+    "main": './src/main.js',
   },
-  
+
   // inline-source-map 和 source-map 都可以
   devtool: 'inline-source-map',
-
   //配置打包时的相对路径
   resolve:{
    alias: {
       "Static": path.resolve(__dirname, "../src/static/"),
    }
   },
-
   output: {
 
     //输出 构建内容 的根路径
@@ -64,8 +67,8 @@ module.exports = {
         test: /\.(htc)$/,
         loader: 'file-loader',
         options: {
-          //publicPath 自身独立的 文件内的引用 URL 前缀
-          publicPath:utils.prePublicPath("htc"),
+          //publicPath:"../../",
+          publicPath:utils.fun_prePublicPath("htc"),
           name: utils.fun_assetsPath('css/[name].[ext]') 
         }
       },
@@ -75,14 +78,14 @@ module.exports = {
         loader: 'url-loader',
         options: {
           //10K限制
-          limit: process.env.NODE_ENV === 'production'? config.build.supportIE8:config.dev.supportIE8,
-          //publicPath 自身独立的 文件内的引用 URL 前缀
-          publicPath:utils.prePublicPath("font"),
+          limit: 1,
           //按路径输出
           //name: 'iconfont/[path].[name].[ext]',
           //按hash输出
-          // name: utils.assetsPath('iconfont/[name].[hash:7].[ext]') ,
-          name: utils.assetsPath('iconfont/[name].[ext]') 
+          // name: utils.fun_assetsPath('iconfont/[name].[hash:7].[ext]') ,
+          //publicPath:"../../",
+          publicPath:utils.fun_prePublicPath("font"),
+          name: utils.fun_assetsPath('iconfont/[name].[ext]') 
         }
       },
       // 图片的加载
@@ -90,13 +93,13 @@ module.exports = {
         test: /\.(png|jpg|jpeg|gif|svg|woff|woff2)$/,
         loader: 'url-loader',
         query: {
-          //publicPath 自身独立的 文件内的引用 URL 前缀  
-          publicPath:utils.prePublicPath("images"),
           //按路径输出
           //name: 'images/[path].[name].[ext]',
           //按hash输出
-          //name:  utils.assetsPath('images/[name].[hash:4].[ext]') ,
-          name:utils.assetsPath('images/[name].[ext]') ,
+          //name:  utils.fun_assetsPath('images/[name].[hash:4].[ext]') ,
+          //publicPath:"../../",
+          publicPath:utils.fun_prePublicPath("images"),
+          name:utils.fun_assetsPath('images/[name].[ext]') ,
           //10K限制
           limit: 10000,
         },
@@ -155,8 +158,22 @@ module.exports = {
           fallback: 'style-loader',
           //resolve-url-loader may be chained before sass-loader if necessary
           use: [
-            'css-loader?sourceMap=true', 
-            "sass-loader?sourceMap=true&outputStyle=compressed&includePaths[]="+ path.resolve(__dirname, "../node_modules/compass-mixins/lib")
+            {
+              loader: "css-loader",
+              options: {
+                  sourceMap: true
+              }
+            },
+            // outputStyle=compressed 模式下的 sourceMap 有问题的 ，expanded 就没有问题了
+            {
+              loader: "sass-loader",
+              options: {
+                  sourceMap: true,
+                  //sourceMapContents:false,
+                  outputStyle:'expanded',
+                  includePaths:[path.resolve(__dirname, "../node_modules/compass-mixins/lib")]
+              }
+            },
           ]
         })
       },
@@ -197,9 +214,14 @@ module.exports = {
  
     ]
   },
-
+  
   //插件
   plugins : [
+
+    //清空内容
+    new CleanWebpackPlugin([
+      (process.env.NODE_ENV === 'production'?config.build.assetsRoot:config.dev.assetsRoot,)
+    ]),
 
     // 将图片拷贝，以备压缩
     /*
@@ -219,21 +241,19 @@ module.exports = {
     ),
     */
 
-    //图片压缩插件
-    new ImageminPlugin({
-      //开发模式不压缩
-      disable:process.env.NODE_ENV !== 'production',
-      test: /\.(jpe?g|png|gif|svg)$/i 
-    }),
-
     //独立CSS文件
     new ExtractTextPlugin({
       filename:  (getPath) => {
-         return getPath(utils.assetsPath('css/[name].css')).replace('css/js', 'css');
+         return getPath(utils.fun_assetsPath('css/[name].css')).replace('css/js', 'css');
       },
       allChunks: true
+    }),
+
+    new HtmlWebpackPlugin({
+      title: 'Output Management'
     })
     
   ]
+
 
 }

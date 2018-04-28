@@ -3,20 +3,20 @@
 @import "compass/reset";
 
 /*页面的基本参数和函数*/
-@import "./modules/_base.scss";
+@import "~Static/scss/modules/_base.scss";
 
 /*页面的整体框架*/
-@import "./modules/_wrapper.scss";
+@import "~Static/scss/modules/_wrapper.scss";
 
 /*页面的整体框架*/
-@import "../iconfont/iconfont.scss";
+@import "~Static/iconfont/iconfont.scss";
 
 $font:16px;
 body{
-	font-size: $font;
-	background:url('../images/a1.png');
+    font-size: $font;
+    background:url('~Static/images/a1.png');
 }
 h1{
-	background:url('../images/icon/1.png');
+    background:url('~Static/images/icon/1.png');
 }
 

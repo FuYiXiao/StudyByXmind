@@ -6,9 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack --config config/webpack.dev.config.js",
-    "build": "webpack --config config/webpack.prod.config.js",
     "watchdev": "webpack --watch --config config/webpack.dev.config.js ",
-    "watchdev": "webpack --watch --config config/webpack.prod.config.js ",
+    "build": "webpack --config config/webpack.prod.config.js",
+    "watchbuild": "webpack --watch --config config/webpack.prod.config.js ",
     "images": "webpack --config config/webpack.images.config.js ",
     "start": "webpack-dev-server --open --config config/webpack.dev.config.js --host 10.200.104.38",
     "build2": "webpack "

@@ -45,6 +45,7 @@ module.exports = {
       "Static": path.resolve(__dirname, "../src/static/"),
    }
   },
+
   output: {
 
     //输出 构建内容 的根路径
@@ -219,9 +220,16 @@ module.exports = {
   plugins : [
 
     //清空内容
-    new CleanWebpackPlugin([
-      (process.env.NODE_ENV === 'production'?config.build.assetsRoot:config.dev.assetsRoot,)
-    ]),
+    new CleanWebpackPlugin(
+      [
+        process.env.NODE_ENV === 'production'?config.build.assetsRoot:config.dev.assetsRoot,
+      ],
+      {
+        root: path.resolve(__dirname, '../'),
+        //实际表示的意义是Write logs to console，即是否要往终端上输出log
+        verbose: true
+      }
+    ),
 
     // 将图片拷贝，以备压缩
     /*
@@ -252,6 +260,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'Output Management'
     })
+
     
   ]
 

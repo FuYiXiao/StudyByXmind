@@ -32,10 +32,10 @@ module.exports = {
   output: {
 
     //输出 构建内容 的根路径
-    path: path.resolve(__dirname, 'src/static/images/'),
+    path: path.resolve(__dirname, '../src/static/images/'),
 
     //输出的文件名
-    filename: '[name]_run.js'
+    filename: '[name].js'
 
   },
   //插件
@@ -48,6 +48,7 @@ module.exports = {
           from:path.resolve(__dirname,'../src/static/images_original/'),
           to:  path.resolve(__dirname,'../src/static/images'),
           test: /\.(jpe?g|png|gif|svg)$/i,
+          ignore: [ '*.js' ],
           force: true
         }
       ],

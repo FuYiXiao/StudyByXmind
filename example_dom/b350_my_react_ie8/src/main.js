@@ -33,7 +33,7 @@ require('console-polyfill');
 //console.log(require('lodash').VERSION);
 
 //require('./sub.js'); //抱错
-require('Static/scss/pub.scss');
+require('Static/scss/public.scss');
 //require('./static/css/pub.css');
 
 require('Static/../test.js');

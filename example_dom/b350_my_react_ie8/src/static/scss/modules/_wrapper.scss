@@ -1,16 +1,22 @@
 @charset "UTF-8";
 
-@import "_base.scss";
+@import "compass";
 
-ul,ol {
-    list-style: none;
-    padding:0px;
-    margin:0px;
-}
+@import "_base.scss";
 
 .clearfix{
   @include clearfix;
 }
-.pub-wrapper{
-	color: $baseWordColor;
+html{
+    min-width: $baseBodyWidth + (2* $basePadding);
 }
+body{
+    background-color:$baseBgColor;
+    font-family: $baseFontFamily;
+    font-size: $baseFontSize;
+    line-height: $baseFontLineHeight;
+    color: $baseFontColor;
+    line-height:$baseFontLineHeight; 
+}
+a{ @include link-colors( nth($baseLinkColors,1), nth($baseLinkColors,2), nth($baseLinkColors,3), nth($baseLinkColors,4), nth($baseLinkColors,5)); }
+

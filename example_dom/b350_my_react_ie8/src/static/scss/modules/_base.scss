@@ -38,44 +38,37 @@
   }
 }
 
+//页面基本字体大小
+$baseFontSize:14px;
+
+//页面基本字体 
+$baseFontFamily:"Microsoft YaHei";
+
+//页面一般文字颜色
+$baseFontColor:#666666;
+
+//页面非重要内容文字颜色
+$baseFontMinorColor:#999999;
+
+//页面基本的行高
+$baseFontLineHeight:1.5;
+
+//页面的标题字体
+$baseTitleColor:#333333;
+
+//页面链接颜色
+$baseLinkColor:#ff8700;
+$baseLinkColors:$baseLinkColor darken($baseLinkColor,20%) lighten($baseLinkColor,20%) lighten($baseLinkColor,10%) darken($baseLinkColor,20%);
+
 //页面间距
 $basePadding:10px;
 
-//页面一般文字颜色
-$baseWordColor:#666666;
-
-//页面非重要内容文字颜色
-$baseUnWordColor:#999999;
-
-//页面的标题字体
-$baseSepColor:#333333;
-
-//框架 的 头部 深蓝底色
+//页面背景色
 $baseBgColor:#438eb9;
 
-//基本底色 浅蓝色
-$baseBtnBgColor:#14b0bf;
-
-//框架 的 基本 最浅蓝色
-$baseTableBgColor:#d8ebf6;
-
-//特殊颜色 橙色
-$SepColorOrange:#f7a810;
-
-//特殊颜色 粉色
-$SepColorPink:#fa3838;
-
-//特殊颜色 蓝色
-$SepColorBlue:#4685ec;
-
-//特殊颜色 蓝色 用于文字
-$SepColorBlueWord:#04a1fb;
-
-//特殊颜色 绿色 
-$SepColorGreen:#5ab42b;
-
 //页面的基本层级
-$zIndex:10;
+$baseZindex:10;
 
-//区别宽度
-$differeWidth:1240px;
+//页面最小宽度
+$baseBodyWidth:1240px;
+

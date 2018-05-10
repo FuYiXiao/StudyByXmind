@@ -231,13 +231,14 @@ module.exports = {
       }
     ),
 
-    // 将图片拷贝，以备压缩
-    /*
+    // 将演示图片复制
     new CopyWebpackPlugin(
       [
         {
-          from:path.resolve(__dirname,'../src/static/images_original/'),
-          to:  path.resolve(__dirname,'../src/static/images'),
+          from:path.resolve(__dirname,'../src/static/pic/'),
+          to:  utils.fun_assetsPath('pic/'),
+          test: /\.(jpe?g|png|gif|svg)$/i,
+          ignore: [ '*.js' ],
           force: true
         }
       ],
@@ -247,7 +248,6 @@ module.exports = {
         copyUnmodified:true 
       }
     ),
-    */
 
     //独立CSS文件
     new ExtractTextPlugin({
@@ -260,8 +260,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'Output Management'
     })
-
-    
+ 
   ]
 
 

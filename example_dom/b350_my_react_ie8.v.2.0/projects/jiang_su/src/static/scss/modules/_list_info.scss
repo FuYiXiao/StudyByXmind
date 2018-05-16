@@ -1,0 +1,38 @@
+/*页面的基本参数和函数*/
+@import "~Static/scss/modules/_base.scss";
+
+.pub-list-info{
+    overflow: hidden;
+    font-size: 16px;
+    .normal,.summary{
+        float: left;
+        width: 49%;
+        box-sizing: border-box;
+        padding-left: .5em;
+        padding-right: .5em;
+        line-height: 2.6em;
+        line-height: 6vh;
+        margin-top: $basePadding * .5;
+        background-color: rgba(0,0,0,.3);
+    }
+    .text{
+        float: left;
+        width: 50%;
+        height: 100%;
+        overflow: hidden;
+    }
+    .num{
+        float: left;
+        width: 50%;
+        height: 100%;
+        text-align: right;
+        overflow: hidden;
+    }
+    .normal-side{
+        float: right;
+    }
+    .summary{
+        clear: both;
+        width: 100%;
+    }
+}

@@ -1,0 +1,197 @@
+@charset "UTF-8";
+
+@import "compass";
+
+@import "_base.scss";
+
+.clearfix{
+  @include clearfix;
+}
+
+html{
+    min-width: $baseBodyWidth + (2* $basePadding);
+    height: 100%;
+    overflow: auto;
+}
+
+body{
+    position: relative;
+    height: 620px;
+    overflow: auto;
+    font-family: $baseFontFamily;
+    font-size: $baseFontSize;
+    color: $baseFontColor;
+    line-height:$baseFontLineHeight;
+    background-color:$baseBgColor;
+    background-image: url(~Static/images/bg_page.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    @media screen and (min-height: 620px) {
+        height: 100%;
+    }
+}
+
+a{ @include link-colors( nth($baseLinkColors,1), nth($baseLinkColors,2), nth($baseLinkColors,3), nth($baseLinkColors,4), nth($baseLinkColors,5)); }
+
+.pub-wrapper{
+    position: relative;
+    z-index: $baseZindex;
+    box-sizing: border-box;
+    padding-top: 72px;
+    width: 100%;
+    height: 100%;
+    min-height: 500px;
+    .header{
+        position: absolute;
+        top: 0px; left: 0px;
+        width: 100%;
+        padding-top: $basePadding;
+        padding-bottom: 0px;
+        z-index: $baseZindex;
+        .title{
+            position: relative;
+            float: left;
+            height: 63px;
+            padding-left:86px; 
+            padding-right: 49px;
+            &:before{
+                position:absolute;
+                left: 0px; top: 0px;
+                content:" ";
+                width: 86px;
+                height: 61px;
+                background-image: url(~Static/images/bg_title_left.png);
+                background-position: center;
+                background-repeat: no-repeat;
+            };
+            &:after{
+                position: absolute;
+                right: 0px; bottom: 0px;
+                content:" ";
+                width: 49px;
+                height: 13px;
+                background-image: url(~Static/images/bg_title_right.png);
+                background-position: center;
+                background-repeat: no-repeat;
+            };
+        }
+        .maintitle,.subhead{
+            float: left;
+            height: 48px;
+            font-size: 32px;
+            line-height: 48px;
+            padding-bottom: 15px;
+            background-image: url(~Static/images/bg_title_mid.png);
+            background-position: bottom;
+            background-repeat:repeat-x;
+        }
+        .maintitle{
+            font-weight: 500;
+            padding-left: .5em;
+        }
+        .subhead{
+            font-size: 30px;
+            padding-right: .5em;
+            background-image: url(~Static/images/bg_title_mid.png);
+        }
+        .btn-back{
+            float: right;
+            font-size: 16px;
+            margin-right: 1em;
+            padding-top: 1em;
+            text-decoration: none;
+            padding-left: 50px;
+            background-image: url(~Static/images/btn_back.png);
+            background-position: 6px 15px;
+            background-repeat:no-repeat;
+        }
+        .logo{
+            position: absolute;
+            left: 60px; bottom: -90px;
+            width: 144px; height: 84px; overflow: hidden;
+            text-indent: -9999px;
+            background-image: url(~Static/images/logo.png);
+            background-position: center;
+            background-repeat:no-repeat;
+        }
+    }
+    .container{
+        position: relative;
+        z-index: $baseZindex - 1; 
+        clear: both;
+        height: 100%;
+        &:before{
+            content:" ";
+            position: absolute;
+            left: 0px;
+            bottom:160px;
+            width: 100%;
+            height: 188px;
+            background-image: url(~Static/images/bg_content.png);
+            background-position: center;
+            background-repeat: repeat-x;
+        };
+        .maincnt{
+            box-sizing: border-box;
+            height: 100%;
+            padding-top: 90px;
+            padding-bottom: 100px;
+        }
+        .echartcnt{
+            margin:0 auto;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        .echartbox{
+            margin:0 auto;
+            width: 90%;
+            height: 100%;
+            overflow: hidden;
+        }
+        .plate-main{
+            float: left;
+            margin-left: 5%;
+            width: 53%;
+            height: 100%;
+        }
+        .plate-side{
+            float: right;
+            margin-right: 5%;
+            width: 35%;
+            height: 100%;
+        }
+    }
+    .icon{
+        display: inline-block; 
+        width: 38px;
+        height: 34px;
+        vertical-align: text-bottom;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    .icon-write{
+        background-image: url(~Static/images/btn_wirte.png);
+    }
+    .icon-user{
+        background-image: url(~Static/images/btn_user.png);
+    }
+    .icon-flower{
+        background-image: url(~Static/images/btn_flower.png);
+    }
+}
+
+.pub-bottom{
+    position: absolute;
+    z-index: $baseZindex - 2; 
+    left: 0px;
+    bottom: 0px;
+    width: 100%;
+    height: 210px;
+    background-image: url(~Static/images/bg_tree.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+

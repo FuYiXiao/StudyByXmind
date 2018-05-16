@@ -1,0 +1,174 @@
+@charset "UTF-8";
+
+@import "compass/reset";
+
+/*页面的基本参数和函数*/
+@import "~Static/scss/modules/_base.scss";
+
+/*页面的整体框架*/
+@import "~Static/scss/modules/_wrapper.scss";
+
+/*页面的column内容*/
+@import "~Static/scss/modules/_column.scss";
+
+/*页面的list内容*/
+@import "~Static/scss/modules/_list_info.scss";
+
+/*页面的 grid 内容*/
+@import "~Static/scss/modules/_grid.scss";
+
+/*来电情况-人工接通率*/
+.page-connect{
+    .echartbox{
+    }
+}
+
+/*来电情况-一次行解决率*/
+.page-single-use{
+    .echartbox{
+        width: 86%;
+    }
+    .container{
+        &:before{
+            bottom:260px;
+        };
+        .maincnt{
+            padding-bottom: 190px;
+        }
+    }
+}
+.pri-summary{
+    position: absolute;
+    left: 50%; 
+    bottom: 0px;
+    margin-left: -325px;
+    width: 651px;
+    height: 180px;
+    background-image: url(~Static/images/bg_world.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    .maintitle{
+        width: 550px;
+        font-size: 32px;
+        text-align: center;
+        line-height: 80px;
+        padding-left: 50px;
+        height: 80px; 
+        overflow: hidden;
+    }
+    .subhead{
+        width: 320px;
+        font-size: 28px;
+        text-align: center;
+        line-height: 60px;
+        padding-left: 130px;
+        height: 60px; 
+        color: $baseFontMinorColor;
+        overflow: hidden;
+    }
+    .text{
+        float: left;
+    }
+    .important{
+        float: left;
+        font-size: 1.5em;
+        padding-left:.5em;
+    }
+}
+
+/*来电情况-一次行解决率*/
+.page-preset{
+    min-height: 620px;
+    .container{
+         &:before{
+            display:none;
+         }
+        .maincnt{
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+        .echartbox{
+            height: 50%;
+            width: 100%;
+        }
+    }
+    .plate-side{
+        min-height: 520px;
+    }
+    .pub-list-info{
+        height: 30%;
+    }
+    .pub-column{
+        padding-top: $basePadding;
+    }
+    .showcnt{
+        position: relative;
+        display: block;
+        @include clearfix;
+        padding-bottom: 12px;
+        background-color: rgba(0,0,0,.3);
+        &:before{
+            position:absolute;
+            width: 80%;
+            left: 10%;
+            bottom: 6px;
+            height: 4px;
+        };
+        .text{
+            float: left;
+            padding-left: .5em;
+            width: 40px;
+            height: 32px;
+            overflow: hidden;
+            font-size: 16px;
+            line-height: 32px;
+        }
+        .num{
+            float: right;
+            padding-right: .5em;
+            width: 46px;
+            height: 32px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            font-size: 24px;
+            line-height: 32px;
+            text-align: right;
+        }
+    }
+    .pri-percent{
+        width: 100%; overflow: hidden;
+        margin-top: $basePadding; 
+        padding: $basePadding;
+        box-sizing: border-box;
+        background-color: rgba(0,0,0,.3);
+        .precent{
+            float: left;
+            width: 25%;
+            height: 3vh;
+        }
+    }
+    .cnt-one:before,.prectne-one{
+        background-color: #fd453a;
+    }
+    .cnt-two:before,.prectne-two{
+        background-color: #1adfa6;
+    }
+    .cnt-three:before,.prectne-three{
+        background-color: #fcdb76;
+    }
+    .cnt-four:before,.prectne-four{
+        background-color: #ffffff;
+    }
+}
+.page-worksheet{
+    .container{
+         &:before{
+            display:none;
+         }
+        .maincnt{
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+    }
+}

@@ -1,0 +1,80 @@
+@charset "utf-8";
+@import "compass/typography";
+@import "compass/css3";
+/*!
+	2016-10-11 打印页面的基本样式
+
+*/
+$border-color:#000;
+*{margin: 0; padding: 0; }
+body{width: 100%; text-align: center;}
+a{
+	color: #000;
+	text-decoration: none;
+}
+/*!
+	公共表格样式
+*/
+.pub-tableprint{
+	margin-left: auto;
+	margin-right: auto;
+	text-align: left;
+	width: 100%;
+	border: 1px solid $border-color;
+	border-collapse:collapse;
+	line-height: 2;
+	font-size: 12px;
+	th{
+		font-weight: bold; text-align:left; 
+		padding: 5px;
+		border: 1px solid $border-color;
+		border-collapse:collapse;
+		white-space: nowrap;
+		overflow: hidden;
+		text-align: right;
+		word-break: keep-all;/*必须*/
+	}
+	td{
+		padding: 5px;
+		border: 1px solid $border-color;
+		border-collapse:collapse;
+		word-break: break-all;
+		overflow: hidden;
+	}
+	.title-th{
+		text-align: center;
+	}
+	.edit_mustinput{
+		display: none;
+	}
+}
+/*!
+	公共表格样式-表头
+*/
+.pub-table-title{
+	font-size: 24px; text-align: center;
+	line-height: 2;
+}
+/*!
+	公共datagrid样式重置
+*/
+.datagrid-print-table{
+	thead{
+	 	td{
+	 		font-weight:bold;
+	 		white-space: nowrap;
+	 		overflow: hidden;
+	 		word-break: keep-all;
+	 		text-align: center;
+	 	}
+	 }
+}
+/*!
+	公共备注内容样式
+*/
+.pub-remarks{
+	text-align: left;
+	font-size: 12px;
+	padding-top: 2em;
+	line-height: 1.5;
+}

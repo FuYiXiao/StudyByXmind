@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>    <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="zh-cmn-Hans"> <![endif]-->
+<!--[if IE 7]>     <html class="no-js lt-ie9 lt-ie8" lang="zh-cmn-Hans"> <![endif]-->
+<!--[if IE 8]>     <html class="no-js lt-ie9" lang="zh-cmn-Hans"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-cmn-Hans"> <!--<![endif]-->
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <!-- 为移动设备添加 viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title><%= htmlWebpackPlugin.options.title %></title>
+
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+
+    <link rel="stylesheet" href="">
+
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>   
+    <![endif]-->
+    <!--respond.js这里本地访问会报错-->
+
+  </head>
+
+  <body>
+    <!--[if lt IE 8]>
+      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <!-- Add your site or application content here -->
+    <div class="pub-wrapper page-preset">
+
+      <div class="header clearfix">
+        <h1 class="logo">12366</h1>
+        <div class="title">
+          <h2 class="maintitle">来电情况</h2>
+          <h3 class="subhead">-当前人工处理情况</h3>
+        </div>
+        <a  class="btn-back" href="#" title="返回按钮">返回</a>
+
+      </div>
+
+      <div class="container">
+        <div class="maincnt clearfix">
+          <div class="plate-main">
+            <div class="echartbox echartbox-one">
+              <div id="echartbox" class="echartcnt">
+              </div>
+            </div>
+            <div class="echartbox echartbox-two">
+              <div id="echartbox2" class="echartcnt">
+              </div>
+            </div>
+          </div>
+          <div class="plate-side">
+            <div class="pub-column">
+              <div class="title">
+                <span class="icon icon-write"></span>
+                <span class="word">受理情况</span>
+              </div>
+              <div class="cnt">
+                <ul class="pub-list-info clearfix">
+                  <li class="normal">
+                    <span class="text">来电总量</span>
+                    <span class="num">12</span>
+                  </li>
+                  <li class="normal normal-side">
+                    <span class="text">IVR解决量</span>
+                    <span class="num">1342</span>
+                  </li>
+                  <li class="normal">
+                    <span class="text">远程转接量</span>
+                    <span class="num">1342</span>
+                  </li>
+                  <li class="normal normal-side"> 
+                    <span class="text">远程转接单</span>
+                    <span class="num">1342</span>
+                  </li>
+                  <li class="summary">
+                    <span class="text">短信总量</span>
+                    <span class="num">331342</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="pub-column">
+              <div class="title">
+                <span class="icon icon-user"></span>
+                <span class="word">人工情况</span>
+              </div>
+              <div class="cnt">
+                <ul class="pub-list-info clearfix">
+                  <li class="normal">
+                    <span class="text">转接人工量</span>
+                    <span class="num">12</span>
+                  </li>
+                  <li class="normal normal-side">
+                    <span class="text">人工接听量</span>
+                    <span class="num">1342</span>
+                  </li>
+                  <li class="normal">
+                    <span class="text">人工放弃量</span>
+                    <span class="num">1342</span>
+                  </li>
+                  <li class="normal normal-side">
+                    <span class="text">排队人数</span>
+                    <span class="num">1342</span>
+                  </li>
+                  <li class="summary">
+                    <span class="text">人工接通率</span>
+                    <span class="num">90.01%</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="pub-column">
+              <div class="title">
+                <span class="icon icon-flower"></span>
+                <span class="word">座席情况</span>
+              </div>
+              <div class="cnt">
+                <div class="pub-gird">
+                  <div class="grid-row">
+                    <div class="gird-col4">
+                      <span class="showcnt cnt-one">
+                        <span class="text">忙碌</span>
+                        <span class="num">60</span>
+                      </span>
+                    </div>
+                    <div class="gird-col4 ">
+                      <span class="showcnt cnt-two">
+                        <span class="text">准备</span>
+                        <span class="num">10</span>
+                      </span>
+                    </div>
+                    <div class="gird-col4 ">
+                      <span class="showcnt cnt-three">
+                        <span class="text">培训</span>
+                        <span class="num">20</span>
+                      </span>
+                    </div>
+                    <div class="gird-col4 ">
+                      <span class="showcnt cnt-four">
+                        <span class="text">小休</span>
+                        <span class="num">10</span>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="pri-percent">
+                    <div class="precent prectne-one" style="width:60%" title="忙碌60%"></div>
+                    <div class="precent prectne-two" style="width:10%" title="准备10%"></div>
+                    <div class="precent prectne-three" style="width:20%" title="培训20%"></div>
+                    <div class="precent prectne-four" style="width:10%" title="小休10%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    
+
+  </body>
+  <script type="text/javascript" src="../scripts/jquery.v1.7.2.js"></script>
+  <script type="text/javascript" src="../scripts/echarts.min.4.1.0.js"></script>
+  <script type="text/javascript" src="../scripts/present.js"></script>
+  
+
+</html>

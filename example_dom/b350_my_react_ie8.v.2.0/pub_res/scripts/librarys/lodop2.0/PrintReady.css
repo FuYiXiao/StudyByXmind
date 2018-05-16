@@ -1,0 +1,12 @@
+﻿/*!
+	2016-10-11 打印页面的基本样式
+
+*/*{margin:0;padding:0}body{width:100%;text-align:center}a{color:#000;text-decoration:none}/*!
+	公共表格样式
+*/.pub-tableprint{margin-left:auto;margin-right:auto;text-align:left;width:100%;border-left:1px solid #000;border-top:1px solid #000;border-collapse:collapse;line-height:2;font-size:12px}.pub-tableprint th{font-weight:bold;text-align:left;padding:5px;border-right:1px solid #000;border-bottom:1px solid #000;border-collapse:collapse;white-space:nowrap;overflow:hidden;text-align:right;word-break:keep-all}.pub-tableprint td{padding:5px;border-right:1px solid #000;border-bottom:1px solid #000;border-collapse:collapse;word-break:break-all;overflow:hidden}.pub-tableprint .title-th{text-align:center}.pub-tableprint .edit_mustinput{display:none}/*!
+	公共表格样式-表头
+*/.pub-table-title{font-size:24px;text-align:center;line-height:2}/*!
+	公共datagrid样式重置
+*/.datagrid-print-table thead td{font-weight:bold;white-space:nowrap;overflow:hidden;word-break:keep-all;text-align:center}/*!
+	公共备注内容样式
+*/.pub-remarks{text-align:left;font-size:12px;padding-top:2em;line-height:1.5}

@@ -1,0 +1,75 @@
+@charset "UTF-8";
+
+//清空浮动
+@mixin clearfix(){ 
+  &:before,
+  &:after {
+    content: " "; 
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+//绘制三角
+@mixin triangle($direction, $size, $borderColor ) {
+  content:"";
+  height: 0;
+  width: 0;
+  @if $direction == top {
+    border-bottom:$size solid $borderColor;
+    border-left:$size dashed transparent;
+    border-right:$size dashed transparent;
+  } 
+  @else if $direction == right {
+    border-left:$size solid $borderColor;
+    border-top:$size dashed transparent;
+    border-bottom:$size dashed transparent;
+  } 
+  @else if $direction == bottom {
+    border-top:$size solid  $borderColor;
+    border-left:$size dashed transparent;
+    border-right:$size dashed transparent;
+  } 
+  @else if $direction == left {
+    border-right:$size solid $borderColor;
+    border-top:$size dashed transparent;
+    border-bottom:$size dashed transparent;
+  }
+}
+
+//页面基本字体大小
+$baseFontSize:14px;
+
+//页面基本字体 
+$baseFontFamily:"Microsoft YaHei";
+
+//页面一般文字颜色
+$baseFontColor:#ffffff;
+
+//页面非重要内容文字颜色
+$baseFontMinorColor:#a7b8ea;
+
+//页面基本的行高
+$baseFontLineHeight:2;
+
+//页面的标题字体
+$baseTitleColor:#ffffff;
+
+//页面链接颜色
+$baseLinkColor:#a7b8ea;
+$baseLinkColors:$baseLinkColor darken($baseLinkColor,20%) lighten($baseLinkColor,20%) lighten($baseLinkColor,10%) darken($baseLinkColor,20%);
+
+//页面间距
+$basePadding:10px;
+
+//页面背景色
+$baseBgColor:#2a428a;
+
+//页面的基本层级
+$baseZindex:10;
+
+//页面最小宽度
+$baseBodyWidth:1260px;
+

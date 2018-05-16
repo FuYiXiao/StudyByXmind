@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>    <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="zh-cmn-Hans"> <![endif]-->
+<!--[if IE 7]>     <html class="no-js lt-ie9 lt-ie8" lang="zh-cmn-Hans"> <![endif]-->
+<!--[if IE 8]>     <html class="no-js lt-ie9" lang="zh-cmn-Hans"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-cmn-Hans"> <!--<![endif]-->
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <!-- 为移动设备添加 viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title><%= htmlWebpackPlugin.options.title %></title>
+
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+
+    <link rel="stylesheet" href="">
+
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>   
+    <![endif]-->
+    <!--respond.js这里本地访问会报错-->
+
+  </head>
+
+  <body>
+    <!--[if lt IE 8]>
+      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <!-- Add your site or application content here -->
+    <div class="pub-wrapper page-worksheet">
+
+      <div class="header clearfix">
+        <h1 class="logo">12366</h1>
+        <div class="title">
+          <h2 class="maintitle">来电情况</h2>
+          <h3 class="subhead">-工单管理</h3>
+        </div>
+        <a  class="btn-back" href="#" title="返回按钮">返回</a>
+
+      </div>
+
+      <div class="container">
+        <div class="maincnt">
+          <div class="echartbox">
+            <div id="echartbox" class="echartcnt">
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    
+
+  </body>
+
+  <script type="text/javascript" src="../scripts/worksheet_old.js"></script>
+</html>

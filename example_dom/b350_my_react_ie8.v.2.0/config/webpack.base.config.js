@@ -298,10 +298,12 @@ module.exports = {
         }
       ]
     ),
+
     //独立CSS文件
     new ExtractTextPlugin({
       filename:  (getPath) => {
-         return getPath(utils.fun_assetsPath('styles/[name].css'));
+        //将路径替换掉
+        return utils.fun_assetsPath(  getPath('styles/[name].css').replace( /(^styles\/)(.*?)([^\/]+.css$)/,'$1$3')  );
       },
       //从所有附加块提取过
       allChunks: true,

@@ -32,16 +32,15 @@ function formatNumUnit(number, ifMoney, places, symbol, thousand, decimal) {
 
 	number = number || 0;
 	var unit ="";
+	
 	//小数点保留位数
 	places = !isNaN(places = Math.abs(places)) ? places : 2;
+	
 	//单位
 	symbol = symbol !== undefined ? symbol : "";
-	//是否在个为单位时，保留两位小数点
+	
+	//是否在个为单位时，保留两位小数点,或者生成两位小数
 	ifMoney = ifMoney !== undefined ? ifMoney : true;
-	//每三位的区分符号
-	thousand = thousand || ",";
-	//小数点
-	decimal = decimal || ".";
 
 	var negative = number < 0 ? "-" : "";
 	
@@ -60,27 +59,56 @@ function formatNumUnit(number, ifMoney, places, symbol, thousand, decimal) {
 		}
 	}
 	
+	return symbol + formatNumSplit(number, places, thousand, decimal) + unit; 
+}
+/*转化数字格式，保留两位小数点
+ @param number 需要转换的数值
+ @param places 小数点保留位数
+ @param thousand 每三位数字之间的分隔符号
+ @param decimal 小数点的符号
+ @return 转换后的数值
+ * */
+ 
+function formatNumSplit(number, places, thousand, decimal) {
+
+	number = number || 0;
+	var unit ="";
+	//小数点保留位数
+	places = !isNaN(places = Math.abs(places)) ? places : 2;
+
+	//每三位的区分符号
+	thousand = thousand || ",";
+	//小数点
+	decimal = decimal || ".";
+
+	var negative = number < 0 ? "-" : "";
+	
 	//取得整数部分 
 	var	i = parseInt(number = Math.abs(+number || 0).toFixed(places), 10) + "",
 	
 		j = (j = i.length) > 3 ? j % 3 : 0;
 	
-	//取得小数部分： toFixed() 方法可把 Number 四舍五入为指定小数位数的数字
-	//var xiaoshu = (places ? decimal + Math.abs(number - i).toFixed(places).slice(2) : "");
 	
-	return symbol + negative + (j ? i.substr(0, j) + thousand : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + thousand) + (places ? decimal + Math.abs(number - i).toFixed(places).slice(2) : "") + unit;
+	return  negative + (j ? i.substr(0, j) + thousand : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + thousand) + (places ? decimal + Math.abs(number - i).toFixed(places).slice(2) : "") ;
 
 }
-
 console.log( formatNumUnit(123456789)   ) ;
 
 console.log( formatNumUnit(12345)   ) ;
 
-console.log( formatNumUnit(1234,false)   ) ;
+console.log( formatNumUnit(1234.1,false)   ) ;
+
+console.log( formatNumUnit(1234.1,true)   ) ;
+
 console.log( formatNumUnit(1234,true)   ) ;
 
 console.log( formatNumUnit(12321423445,true)   ) ;
 
+
+
+console.log("S:"+ formatNumSplit(1234567890,0)   ) ;
+
+console.log("S:"+ formatNumSplit(12345678.901,2)   ) ;
 
 </script>
 

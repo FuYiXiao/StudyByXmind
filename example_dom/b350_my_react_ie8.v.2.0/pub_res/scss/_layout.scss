@@ -1,0 +1,35 @@
+@import "compass";
+
+/*页面的基本参数和函数*/
+@import "~pubScouce/scss/_function.scss";
+
+//页面间距
+$basePadding:10px !default;
+$gridColumns:24;
+
+%col-base{
+    float:left;
+    box-sizing: border-box;
+    padding-left:$basePadding;
+    padding-right:$basePadding;
+}
+
+//用于页面整体布局
+.pub-layout{
+    .layout-cnt{
+        @include clearfix();
+        box-sizing: border-box;
+    }
+    .layout-row{
+        @include clearfix();
+        box-sizing: border-box;
+        margin-left:-1* $basePadding;
+        margin-right: -1* $basePadding;
+    }
+    @for $i from 1 through $gridColumns {
+        .col-#{$i} {
+            @extend %col-base;
+            width:percentage( $i / $gridColumns );
+        }
+    }
+}

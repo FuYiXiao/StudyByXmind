@@ -1,0 +1,73 @@
+@charset "UTF-8";
+
+@import "compass";
+
+
+//页面基本字体大小
+$baseFontSize:14px !default;
+
+//页面基本字体 
+$baseFontFamily:"Microsoft YaHei" !default;
+
+//页面基本的行高
+$baseFontLineHeight:2 !default;
+
+//页面一般文字颜色
+$baseFontColor:#333 !default;
+
+//页面非重要内容文字颜色
+$baseFontMinorColor:#999 !default;
+
+//页面的标题字体
+$baseTitleColor:#000 !default;
+
+//页面链接颜色
+$baseLinkColor:#08639a !default;
+$baseLinkColors:$baseLinkColor darken($baseLinkColor,15%) lighten($baseLinkColor,15%) lighten($baseLinkColor,20%) darken($baseLinkColor,20%)  !default;
+
+//页面间距
+$basePadding:10px !default;
+
+//页面背景色
+$baseBgColor:#FFF !default;
+
+//页面的基本层级
+$baseZindex:10 !default;
+
+//页面最小宽度
+$baseBodyWidth:780px !default;
+
+
+.clearfix{
+  @include clearfix;
+}
+
+html{
+    min-width: $baseBodyWidth + (2* $basePadding);
+    height: 100%;
+    overflow: auto;
+}
+
+body{
+    position: relative;
+    font-family: $baseFontFamily;
+    font-size: $baseFontSize;
+    color: $baseFontColor;
+    line-height:$baseFontLineHeight;
+    /*
+    @media screen and (min-height: 620px) {
+        height: 100%;
+    }
+    */
+}
+
+a{ 
+    @include link-colors( 
+        nth($baseLinkColors,1), 
+        nth($baseLinkColors,2), 
+        nth($baseLinkColors,3), 
+        nth($baseLinkColors,4), 
+        nth($baseLinkColors,5)
+    ); 
+}
+

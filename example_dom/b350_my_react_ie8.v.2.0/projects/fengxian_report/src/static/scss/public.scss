@@ -1,0 +1,248 @@
+@charset "UTF-8";
+
+@import "compass/reset";
+
+/*页面的基本参数和函数*/
+@import "~pubScouce/scss/_function.scss";
+
+/*页面布局*/
+@import "~pubScouce/scss/_layout.scss";
+
+
+$pageBodyWidth:1000px;
+$pageSideWidth:120px;
+
+/*页面的整体框架*/
+@import "~pubScouce/scss/_wrapper.scss";
+
+/*页面布局*/
+@import "~pubScouce/scss/_layout.scss";
+
+
+.page-wrapper{
+    min-width: $pageBodyWidth;
+    padding-left: $basePadding;
+    padding-right: $basePadding;
+    .container{
+        margin:0 auto;
+        max-width: 1000px;
+        position: relative;
+        left: 0px; top: 0px;
+        padding-left: $pageSideWidth;
+        padding-right: $pageSideWidth;
+        padding-bottom: 2em;
+    }
+    .side-menu{
+        position: absolute;
+        box-sizing: border-box;
+        width: $pageSideWidth;
+        left: 0px;
+        top: 150px;
+        border:1px dashed $baseLinkColor ;
+        border-right-width: 0px;
+        .premenu:first-child{
+            .btn{
+                border-top:none;
+            }
+        }
+        .btn{
+            border-top: 1px dashed $baseLinkColor;
+        }
+    }
+    .btn{
+        display: block;
+        padding-top: 1em;
+        padding-bottom: 1em;
+        line-height: 1em;
+        text-align: center;
+        text-decoration: none;
+    }
+    .btn-unlink{
+        @include link-colors($baseFontMinorColor,$baseFontMinorColor,$baseFontMinorColor,$baseFontMinorColor,$baseFontMinorColor,); 
+        cursor: default;
+    }
+    .premain{
+        width: 100%;
+        box-sizing: border-box;
+        min-height: 600px;
+        border:1px solid $baseFontMinorColor;
+    }
+    .pri-main{
+        position: relative;
+        left: 0px; top: 0px;
+        text-align: center;
+        .subhead{
+            padding-top: 2em;
+            font-size: 32px;
+            color: $baseTitleColor;
+            font-weight: bold;
+        }
+        .title{
+            font-size: 36px;
+            color: #FF0000;
+        }
+        .footer{
+            position: absolute;
+            bottom: 0px; left: 0px;
+            width: 100%;
+        }
+        .footer-title{
+            font-size: 26px;
+            color:  $baseTitleColor;
+        }
+        .date{
+            padding-bottom: 1em;
+        }
+        .logoimg{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 141px;
+            height: 137px;
+            margin-top: -68px;
+            margin-left: -70.5px;
+        }
+    }
+    .infobbox {
+        margin:0 auto;
+        overflow: hidden;
+    }
+
+}
+.pub-column{
+    padding-top: 2em;
+    .column-tit{
+        position: relative;
+        left: 0px; top: 0px;
+        padding-left: 14px;
+        height: 32px;
+        line-height: 32px;
+        font-size: 24px; color: $baseTitleColor;
+        &:before{
+            position:absolute; left: 0px; top:0px; z-index: 1;
+            content:" ";
+            width: 14px; 
+            height: 32px; 
+            background-color: #199ED8;
+        };
+        &:after{
+            position: absolute; z-index: 0;
+            content:" ";
+            right: 0px;
+            top: 14px; 
+            width: 100%;
+            height: 2px; line-height: 2px; font-size: 0px;
+            background-color: lighten($baseFontMinorColor,25%);
+        };
+        .word{ 
+            position: relative; z-index: 1;
+            float: left;
+            padding-left: 1em;
+            padding-right: 1em;
+            background-color: $baseBgColor; 
+            font-weight: bold;
+        }
+    } 
+    .column-cnt{ 
+        padding: 1em;
+        padding-left: 2em;
+        padding-right: 2em; 
+    }
+    .preline{
+        .tit,.cnt{ 
+            height: 3em;
+            line-height: 3em;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            font-size: 16px;
+            border-bottom: 1px dashed $baseFontMinorColor; 
+        } 
+        .tit{
+            text-align: left;
+            text-indent:  1em;
+            font-weight: bold;
+        }
+        .cnt{
+            text-align: left;
+        }
+    }
+    .paragraph{
+        text-indent: 2em;
+        padding-bottom: 1em;
+        .strong{
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        .important{
+            color: red;
+        }
+    }
+    .part{
+        padding-top: 1em;
+        &:first-child{
+            padding-top:0em;
+        };
+        .tit{
+            font-weight: bold;
+            font-size: 16px;
+        }
+        .layout-cnt{
+            padding-left: 2em;
+            padding-right: 2em;
+            padding-bottom: 1em;
+            padding-top: 1em;
+        }
+        .subinfo{
+            padding-bottom: 1em;
+        }
+        .subinfo-tit{
+            text-indent: 2em;
+        }
+        .subinfo-cnt{
+            text-indent: 2em;
+        }
+    }
+    .pub-table{
+        .layout-cnt{
+            padding:0;
+        }
+    }
+    .btn-detail{
+        display: inline-block;
+        padding:0.2em 1em;
+        color: #fff;
+        font-weight: normal;
+        background-color: #2DC3E8;
+        cursor: pointer;
+        border:1px solid darken(#2DC3E8,10%);
+        border-radius: 5px;
+        &:hover{
+            background-color:darken(#2DC3E8,10%);
+            border-color: darken(#2DC3E8,20%);
+        };
+    }
+}
+.pub-table{
+    table-layout: fixed;
+    width: 100%;
+    border-bottom: 1px solid $baseFontColor;
+    border-right: 1px solid $baseFontColor;
+    th{
+        border-top: 1px solid $baseFontColor;
+        border-left: 1px solid $baseFontColor;
+        padding:.5em 1em;
+        white-space: normal;
+        word-break: break-all;
+        background-color: lighten($baseFontMinorColor,20%);
+        text-align: center;
+        font-weight: bold;
+    }
+    td{
+        padding:.5em 1em;
+        border-top: 1px solid $baseFontColor;
+        border-left: 1px solid $baseFontColor;
+    }
+}
+
+

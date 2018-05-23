@@ -6,13 +6,7 @@ const path = require('path');
 // 生成 HMTL 插件
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-//内联样式插件
-const StyleExtHtmlWebpackPlugin =  require('style-ext-html-webpack-plugin');
-
-// 将资源内联到 HTML 只会内联 CSS 和 JS（通过webpack打包处理的js,其他静态JS不处理），绝对路径定位可以使用，相对路径会报错
-//var HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin');
-
-//设置配置根目录
+//设置根目录
 const l_s_rootPath = path.resolve(__dirname, '../');
 
 //当前项目所在的目录
@@ -25,7 +19,7 @@ const l_s_divPath = path.resolve( l_s_currentPath, 'dev' );
 const l_s_prodPath = path.resolve( l_s_currentPath, 'dist' );
 
 //开发环境的静态资源路径
-const l_s_devAssetsPublicPath = "static/";
+const l_s_devAssetsPublicPath = "static";
 
 //生产环境的静态资源路径
 const l_s_prodAssetsPublicPath = "./";
@@ -35,16 +29,14 @@ const l_s_assetsPublicPath = (process.env.NODE_ENV === 'production'? l_s_prodAss
 
 //配置输出的文件名,根据静态资源路径路径指定输出路径
 const entryObj = {};
-entryObj[(l_s_assetsPublicPath + "scripts/report")] = path.resolve(l_s_currentPath, 'src/main.js' );
+entryObj["main"]=path.resolve(l_s_currentPath, 'src/main.js' );
+entryObj[(l_s_assetsPublicPath + "/scripts/base")]=path.resolve(l_s_currentPath, 'src/base.js' );
 
 //是否复制公共资源到项目
 const l_b_ifCopyPub_res = false;
 
-//是否将样式写入到HTML页面中
+//是否将样式内嵌
 const l_b_ifCssInsertHtml = false;
-
-//是否将样式独立样式表
-const l_b_ifExtractCss = false;
 
 //针对不同开发环境的配置
 module.exports = {
@@ -52,8 +44,8 @@ module.exports = {
   //整个项目的根目录
   context: l_s_rootPath ,
 
-  //是否将样式独立样式表
-  a_b_ifExtractCss : l_b_ifExtractCss,
+  //是否将样式内嵌
+  a_b_ifCssInsertHtml : l_b_ifCssInsertHtml,
 
   //是否复制公共资源到项目
   a_b_ifCopyPub_res : l_b_ifCopyPub_res,
@@ -73,30 +65,13 @@ module.exports = {
   pubPage:[
   
         new HtmlWebpackPlugin({
-          title: '报文',
-          filename: l_s_assetsPublicPath + '/html/index.html',
-          template: path.resolve(l_s_rootPath, l_s_currentPath, 'src/static/html/index.html' ),
+          title: '来电情况-人工接通率',
+          filename: l_s_assetsPublicPath + '/html/connect.html',
+          template: path.resolve(l_s_rootPath, l_s_currentPath, 'src/static/html/connect.html' ),
           //需要排除的文件 
-          excludeChunks:process.env.NODE_ENV === 'production' ? [ 'scripts/base' ] : [],
-          //对引用文件增加缓存
-          hash:true,
-          //压缩HTMl 文件
-          /*
-          minify:{
-            conservativeCollapse:true,
-            collapseWhitespace:true
-          },
-          */
-
-          //只在页面有改变，才触发改变
-          cache:true,
-
-          // inlineSource: '.(css)$' // 这里的配置是配合 HtmlWebpackInlineSourcePlugin
-        }),
-        // 将资源内联到 HTML 只会内联 CSS 和 JS（通过webpack打包处理的js,其他静态JS不处理），绝对路径定位可以使用，相对路径会报错
-        //new HtmlWebpackInlineSourcePlugin()   
-        
-        
+          excludeChunks:process.env.NODE_ENV === 'production' ? [ 'scripts/base' ] : [] 
+        })   
+		
   ],
 
   //END -- pubPage
@@ -170,16 +145,6 @@ module.exports = {
 
     //项目所需的私有文件
     pripage:[
-
-      //将样式放到样式<style>里面
-      new StyleExtHtmlWebpackPlugin({
-        //是否压缩
-        minify: true,
-        //是否开启插件
-        enabled:true,
-        cssRegExp:/report.css$/
-      })
-      
     ],
 
     //图片的路径 publicPath

@@ -24,6 +24,9 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 // 生成HMTL插件
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+//内联样式插件
+const StyleExtHtmlWebpackPlugin =  require('style-ext-html-webpack-plugin');
+
 module.exports = {
 
   // entry 配置项的根目录
@@ -58,6 +61,7 @@ module.exports = {
   //组件
   module: {
     rules: [
+
       //IE 浏览器的兼容文件
       {
         test: /\.(htc)$/,
@@ -68,6 +72,7 @@ module.exports = {
           name: utils.fun_assetsPath('htc/[name].[ext]') 
         }
       },
+
       //字体文件的输出
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
@@ -84,6 +89,7 @@ module.exports = {
           name: utils.fun_assetsPath('iconfont/[name].[ext]') 
         }
       },
+
       // 图片的加载
       {
         test: /\.(png|jpg|jpeg|gif|svg|woff|woff2)$/,
@@ -100,6 +106,7 @@ module.exports = {
           limit: 10000,
         },
       },
+
       // .css 文件的加载处理
       /*
       {
@@ -119,6 +126,7 @@ module.exports = {
           use: "css-loader"
         })
       },
+
       // .scss 文件的加载处理
       /*
       {
@@ -173,6 +181,7 @@ module.exports = {
           ]
         })
       },
+      
       // .js文件的处理 es3ify-loader 放在前面，猜测表示的是后处理
       {
         test: /\.js$/,
@@ -185,7 +194,7 @@ module.exports = {
             loader: 'babel-loader'
           }
         ]
-      },
+      },   
       /* 写法方式一：可以通过
       {
         test: /\.js$/,
@@ -207,7 +216,30 @@ module.exports = {
         ]
       }
       */
- 
+
+      //HTML图片内联-
+      /*
+      {
+        test: /\.template$/,
+        use: {
+          loader: 'html-loader',
+          options: {
+            //指定加载转换的事 data-src 属性，而不是 src 属性
+            //attrs: [':data-src']
+          }
+        }
+      },
+      */
+      {
+        test: /\.template$/,
+        use: {
+          loader: 'html-loader',
+          options: {
+            //指定加载转换的事 data-src 属性，而不是 src 属性
+            attrs: ['img:src', 'link:href', ':data-src']
+          }
+        }
+      },
     ]
   },
   
@@ -271,6 +303,7 @@ module.exports = {
         copyUnmodified:true 
       }
     ),
+
     // 将复制公共资源到项目
     new CopyWebpackPlugin(
       [
@@ -300,6 +333,7 @@ module.exports = {
     ),
 
     //独立CSS文件
+
     new ExtractTextPlugin({
       filename:  (getPath) => {
         //将路径替换掉
@@ -307,13 +341,24 @@ module.exports = {
       },
       //从所有附加块提取过
       allChunks: true,
+      //cache:false,
       //禁用插件
-      disable:config.a_b_ifCssInsertHtml
+      disable:config.a_b_ifExtractCss
     }),
-
+    
+    //将样式放到样式<style>里面
+    /*
+    new StyleExtHtmlWebpackPlugin({
+      //是否压缩
+      minify: true,
+      cssRegExp:/report.css$/
+    })
+    */
+    /*
     new HtmlWebpackPlugin({
       title: 'index'
     })
+    */
  
   ]
 

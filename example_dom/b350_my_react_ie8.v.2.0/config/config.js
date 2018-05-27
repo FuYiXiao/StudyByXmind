@@ -12,6 +12,9 @@ const StyleExtHtmlWebpackPlugin =  require('style-ext-html-webpack-plugin');
 // 将资源内联到 HTML 只会内联 CSS 和 JS（通过webpack打包处理的js,其他静态JS不处理），绝对路径定位可以使用，相对路径会报错
 //var HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin');
 
+//内联样式到DIV里面插件
+const HtmlWebpackInlineStylePlugin =  require('html-webpack-inline-style-plugin');
+
 //设置配置根目录
 const l_s_rootPath = path.resolve(__dirname, '../');
 
@@ -120,7 +123,19 @@ module.exports = {
 
     //项目所需的私有文件
     pripage:[
-
+	
+      //内联样式到DIV里
+      /*
+      new StyleExtHtmlWebpackPlugin({
+        //是否压缩
+        minify: true,
+        //是否开启插件
+        enabled:true,
+        cssRegExp:/report.css$/
+      }),
+      new  HtmlWebpackInlineStylePlugin(),
+      */
+	  
     ],
 
     //图片的路径 publicPath

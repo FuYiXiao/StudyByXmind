@@ -3,6 +3,9 @@
 //引入path插件
 const path = require('path');
 
+//webpack插件
+const webpack = require('webpack');
+
 // 生成 HMTL 插件
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -54,9 +57,6 @@ module.exports = {
 
   //整个项目的根目录
   context: l_s_rootPath ,
-
-  //是否将样式独立样式表
-  a_b_ifExtractCss : l_b_ifExtractCss,
 
   //是否复制公共资源到项目
   a_b_ifCopyPub_res : l_b_ifCopyPub_res,
@@ -115,6 +115,9 @@ module.exports = {
     //静态资源的存放目录 完整路径就是 /dev/static
     assetsSubDirectory: l_s_devAssetsPublicPath,
 
+    //是否将样式独立样式表
+    a_b_ifExtractCss : l_b_ifExtractCss,
+
     //是否支持IE8
     supportIE8:true,
 
@@ -135,7 +138,12 @@ module.exports = {
       }),
       new  HtmlWebpackInlineStylePlugin(),
       */
-	  
+
+      //将依赖插件的命名
+      new webpack.NamedModulesPlugin(),
+
+      //开启插件热替换
+      new webpack.HotModuleReplacementPlugin()
     ],
 
     //图片的路径 publicPath
@@ -177,6 +185,9 @@ module.exports = {
     //静态资源的存放目录
     assetsSubDirectory: l_s_prodAssetsPublicPath,
 
+    //是否将样式独立样式表
+    a_b_ifExtractCss : true,
+    
     //是否支持IE8
     supportIE8:true,
 

@@ -333,7 +333,6 @@ module.exports = {
     ),
 
     //独立CSS文件
-
     new ExtractTextPlugin({
       filename:  (getPath) => {
         //将路径替换掉
@@ -343,7 +342,7 @@ module.exports = {
       allChunks: true,
       //cache:false,
       //禁用插件
-      disable:config.a_b_ifExtractCss
+      disable:!(process.env.NODE_ENV === 'production'?config.build.a_b_ifExtractCss:config.dev.a_b_ifExtractCss)
     }),
     
     //将样式放到样式<style>里面

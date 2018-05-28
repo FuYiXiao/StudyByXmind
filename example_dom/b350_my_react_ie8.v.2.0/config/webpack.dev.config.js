@@ -30,7 +30,10 @@ module.exports = merge(
   {
       // 开发模式的服务器
       devServer: {
-         contentBase: config.dev.assetsRoot
+         //开发模式下服务器的目录
+         contentBase: config.dev.assetsRoot,
+         //开启插件热替换
+         hot: true
       },
 
       //插件的组合--输出页面

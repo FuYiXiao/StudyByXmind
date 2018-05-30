@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>shuiju</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/dqrgcl.css">
+</head>
+
+<body>
+    <div id="app" class="main">
+        <div class="content">
+            <div class="logo-title"></div>
+            <div class="return" @click="returnLast">
+                <span></span>返回</div>
+            <div class="charts-box">
+                <div class="left">
+                    <div class="list" v-for="(info,index) in tableData" :key="index">
+                        <div class="idx">{{index+1}}</div>
+                        <div class="tit">{{info.name}}:</div>
+                        <div class="con">{{info.content}}</div>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="percent" v-for="(info,index) in tableData" :key="index" :style="'width:'+info.percent+'%'">
+                        {{info.value}}
+                    </div>
+                </div>
+            </div>
+            <div class="right-box">
+                <div class="title"><img src="images/7_01.png">受理情况</div>
+                <div class="info-parent">
+                    <div class="info-box"><p>来电总量</p> <p>{{rightData.ldzl}}</p></div>
+                    <div class="info-box"><p>IVR解决量</p> <p>{{rightData.ivrjjl}}</p></div>
+                </div>
+                <div class="info-parent">
+                    <div class="info-box"><p>远程转接量</p> <p>{{rightData.yczjl}}</p></div>
+                    <div class="info-box"><p>远程转接单</p> <p>{{rightData.yczjd}}</p></div>
+                </div>
+                <div class="info-parent">
+                    <div class="info-box">
+                        <div>短信总量</div>
+                        <div>{{rightData.dxzl}}</div>
+                    </div>
+                </div>
+                <div class="title"><img src="images/7_02.png">人工情况</div>
+                <div class="info-parent">
+                    <div class="info-box"><p>转接人工量</p> <p>{{rightData.zjrgl}}</p></div>
+                    <div class="info-box"><p>人工接听量</p> <p>{{rightData.rgjtl}}</p></div>
+                </div>
+                <div class="info-parent">
+                    <div class="info-box"><p>人工放弃量</p> <p>{{rightData.rgfql}}</p></div>
+                    <div class="info-box"><p>排队人数</p> <p>{{rightData.pdrs}}</p></div>
+                </div>
+                <div class="info-parent">
+                    <div class="info-box">
+                        <div>人工接通率</div>
+                        <div>{{rightData.rgjtll}}%</div>
+                    </div>
+                </div>
+                <div class="title"><img src="images/7_03.png">座席情况</div>
+                <div class="info-parent percent-box">
+                    <div class="info-box">
+                        <div>忙绿</div>
+                        <div>{{rightData.busy}}</div>
+                    </div>
+                    <div class="info-box">
+                        <div>准备</div>
+                        <div>{{rightData.ready}}</div>
+                    </div>
+                    <div class="info-box">
+                        <div>培训</div>
+                        <div>{{rightData.study}}</div>
+                    </div>
+                    <div class="info-box">
+                        <div>小休</div>
+                        <div>{{rightData.rest}}</div>
+                    </div>
+                </div>
+                <div class="info-parent percent-box1">
+                    <div class="color-box busy" :style="'flex:'+rightData.busy"></div>
+                    <div class="color-box ready" :style="'flex:'+rightData.ready"></div>
+                    <div class="color-box study" :style="'flex:'+rightData.study"></div>
+                    <div class="color-box rest" :style="'flex:'+rightData.rest"></div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- built files will be auto injected -->
+    <script src="js/vue.min.js"></script>
+    <script src="js/echarts.min.js"></script>
+    <script>
+        var app2 = new Vue({
+            el: '#app',
+            data: {
+                rightData: {},
+                tableData: [],
+            },
+            methods: {
+                returnLast: function () {
+                    history.back(-1);
+                },
+                getData: function(idx){
+                    this.rightData = {
+                        ldzl: 0,
+                        ivrjjl: 10,
+                        yczjl: 10,
+                        yczjd: 1,
+                        dxzs: 100,
+
+                        zjrgl: 10,
+                        rgjtl: 10,
+                        rgfql: 10,
+                        pdrs: 10,
+                        rgjtll:100,
+                        busy: 33,
+                        ready:20,
+                        study: 3,
+                        rest: 1
+                    };
+                    let resdata = [{
+                        id: 1,
+                        name: '地税',
+                        content: '典款短发史蒂夫史蒂夫',
+                        value: 12345,
+                    },{
+                        id: 2,
+                        name: '地税',
+                        content: 'asdajds啊经典款短发史蒂夫史蒂夫到付',
+                        value: 9234,
+                    },{
+                        id: 3,
+                        name: '地税',
+                        content: 'as发史蒂夫史蒂夫到付',
+                        value: 8123,
+                    },{
+                        id: 4,
+                        name: '地税',
+                        content: 'asdajds啊经典款短发史蒂夫史蒂夫到付',
+                        value: 6612,
+                    },{
+                        id: 5,
+                        name: '地税',
+                        content: 'asdajds啊经典款短发史蒂夫史蒂夫到付',
+                        value: 5111,
+                    }];
+                    this.formatterData(resdata);
+                },
+                formatterData(resdata){
+                    for(let i = 0; i < resdata.length; i++){
+                        if(i == 0){
+                            resdata[i].percent = 100;
+                        }else{
+                            resdata[i].percent = (resdata[i].value/resdata[0].value*100).toFixed(2);
+                        }
+                    }
+                    this.tableData = resdata;
+                }
+                
+            },
+            mounted() {
+                this.getData();                
+            }
+        })
+    </script>
+</body>
+
+</html>

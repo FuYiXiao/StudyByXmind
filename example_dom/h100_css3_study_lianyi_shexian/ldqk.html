@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>shuiju</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/ldqk.css">
+</head>
+
+<body>
+    <div id="app" class="main">
+        <div class="content">
+            <div class="logo-title"></div>
+            <div class="return" @click="returnLast">
+                <span></span>返回</div>
+            <div class="feichuan"><div></div></div>
+            <div class="map"></div>
+            <div class="total">
+                <div class="phone"></div>
+                <div class="info">
+                    <h3>历年累计来电总量</h3>
+                    <p>{{totalphone}}
+                        <label>个</label>
+                    </p>
+                </div>
+            </div>
+            <div class="echart-box">
+                <div id="main"></div>
+            </div>
+        </div>
+    </div>
+    <!-- built files will be auto injected -->
+    <script src="js/vue.min.js"></script>
+    <script src="js/echarts.min.js"></script>
+    <script>
+        var app2 = new Vue({
+            el: '#app',
+            data: {
+                totalphone: 0,
+                message: '页面加载于 ' + new Date().toLocaleString()
+            },
+            methods: {
+                returnLast: function () {
+                    history.back(-1);
+                },
+                creatOption: function (data) {
+                    let option = {
+                        grid: {
+                        },
+                        xAxis: [
+                            {
+                                type: 'category',
+                                boundaryGap: false,
+                                show: false,
+                                data: data.yearlist
+                            }
+                        ],
+                        yAxis: [
+                            {
+                                show: false,
+                                type: 'value',
+                                min: 2000000
+                            }
+                        ],
+                        series: [
+                            {
+                                type: 'line',
+                                label: {
+                                    normal: {
+                                        show: true,
+                                        position: [-25,-30],
+                                        color: '#fff',
+                                        fontSize: 16,
+										/*
+                                        formatter:function(data){
+                                            return (data.value/10000).toFixed(2)+'万\n\n\n     '+data.name+'年';
+                                        }
+										formatter: [
+											'{a|这段文本采用样式a}',
+											'{b|这段文本采用样式b}这段用默认样式{x|这段用样式x}'
+										].join('\n'),
+										*/
+                                        formatter:function(data){
+                                            return  [ '{a|'+(data.value/10000).toFixed(2)+'万\n\n}','{b|'+data.name+'年b}'].join('\n'),
+                                        }
+										
+										
+                                    }
+                                },
+                                lineStyle: {
+                                    width: 5
+                                },
+                                data: data.data
+                            }
+                        ]
+                    };
+                    this.initCanvas(option);
+                },
+                initCanvas: function (option) {
+                    var myChart = echarts.init(document.getElementById('main'));
+                    myChart.setOption(option);
+                }
+            },
+            mounted() {
+                // 赋值历年累计来电总量
+                this.totalphone = 1232142344;
+                // 赋值echart折线图
+                let data = {
+                    yearlist: ['2014', '2015', '2016', '2017', '2018', '2019', '2020','2021', '2022', '2023', '2024', '2025' ],
+                    data: [2000000, 2100000, 2001230, 2321000, 2401203, 2101230, 2620000, 2701230, 2801230, 2901023, 3001023, 3000000]
+                }
+                this.creatOption(data);
+            }
+        })
+    </script>
+</body>
+
+</html>

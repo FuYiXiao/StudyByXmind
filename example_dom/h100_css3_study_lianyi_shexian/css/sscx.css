@@ -1,0 +1,193 @@
+.main{
+    background-image: url(../images/bg.png);
+    background-size: 100% 100%;
+}
+.content .logo-title{
+    width: 678px;
+    height: 64px;
+    position: relative;
+    top: 27px;
+    background-image: url(../images/11.png);
+    background-size: 100% 100%;
+}
+
+.content .map{
+    position: absolute;
+    top: 130px;
+    left: 100px;
+    width: 709px;
+    height: 583px;
+    background-image: url(../images/map.png);
+    background-size: 100% 100%;
+}
+.content .map .city-list{
+    position: absolute;
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+    cursor: pointer
+}
+.content .map .city-list.city01{
+    left: 410px;
+    top: 40px;
+}
+.content .map .city-list.city02{
+    left: 440px;
+    top: 160px;
+}
+.content .map .city-list.city03{
+    left: 580px;
+    top: 190px;
+}
+.content .map .city-list.city04{
+    left: 340px;
+    top: 240px;
+}
+.content .map .city-list.city05{
+    left: 450px;
+    top: 280px;
+}
+.content .map .city-list.city06{
+    left: 200px;
+    top: 280px;
+}
+.content .map .city-list.city07{
+    left: 290px;
+    top: 290px;
+}
+.content .map .city-list.city08{
+    left: 100px;
+    top: 390px;
+}
+.content .map .city-list.city09{
+    left: 280px;
+    top: 430px;
+}
+
+.content .map .city-list.active::after{
+    position: absolute;
+    content: "";
+    width: 110px;
+    left: -50%;
+    top: 20px;
+    height: 66px;
+    background-image: url(../images/quan.png);
+    background-size: 100% 100%;
+    transform: scale(.3);
+    animation:mymove 1.5s infinite;
+}
+.content .map .city-list.active::before{
+    position: absolute;
+    content: "";
+    width: 110px;
+    left: -50%;
+    top: 20px;
+    height: 66px;
+    background-image: url(../images/quan.png);
+    background-size: 100% 100%;
+    transform: scale(.5);
+    opacity: .4;
+    animation:mymove2 1.5s infinite;
+}
+.content .map .city-list.active p::before {
+    position: absolute;
+    content: "";
+    width: 110px;
+    left: -50%;
+    top: 20px;
+    height: 66px;
+    background-image: url(../images/quan.png);
+    background-size: 100% 100%;
+    transform: scale(.8);
+    opacity: .1;
+    animation:mymove3 1.5s infinite;
+}
+@keyframes mymove{
+    from{
+        transform: scale(.3);
+    }
+    to{
+        transform: scale(.5);
+        opacity: 0;   
+    }
+}
+@keyframes mymove2{
+    from{
+        transform: scale(.5);
+    }
+    to{
+        transform: scale(.8);
+        opacity: 0;   
+    }
+}
+@keyframes mymove3{
+    from{
+        transform: scale(.8);
+    }
+    to{
+        transform: scale(1);
+        opacity: 0;   
+    }
+}
+.right-box{
+    position: absolute;
+    right: 0;
+    top: 60px;
+    width: 409px;
+}
+.right-box .title{
+    width: 409px;
+    height: 92px;
+    line-height: 120px;
+    padding-left: 20px;
+    color: #fff;
+    font-size: 26px;
+    background-image: url(../images/sscx_tit.png);
+    background-size: 100% 100%;
+}
+.info-parent{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    margin-right: 50px;
+}
+.info-box{
+    width: 100%;
+    flex: 1;
+    height: 50px;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: rgba(0,0,0,.6);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    color: #fff;
+    font-size: 14px;
+    margin-right: 10px;
+}
+.info-box:last-child{
+    margin-right: 0
+}
+.info-box.bigger{
+    font-size: 18px;
+}
+.info-table{
+    margin-right: 50px;
+    margin-top: 30px;
+    color: #fff;
+    background-color: rgba(0,0,0,.6);
+    font-size: 14px;
+}
+.info-table table{
+    width: 100%;
+}
+.info-table th,
+.info-table td{
+    height: 45px;
+    line-height: 45px;
+    border-bottom: 1px solid #3169a6;
+    border-right: 1px solid #3169a6;
+    text-align: center;
+}

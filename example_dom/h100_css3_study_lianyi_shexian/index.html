@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>shuiju</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+    <div id="app" class="main">
+        <div class="content">
+            <div class="logo"></div>
+		    <canvas id="mycanvas" style="opacity: .1;"></canvas>
+            <div class="sub-title"></div>
+            <div class="bottom">
+                <div class="list" @click="goPage('ldqk')"><span><img src="images/04.png"/></span>来电情况</div>
+                <div class="list" @click="goPage('sscx')"><span><img src="images/05.png"/></span>实时查询</div>
+                <div class="list" @click="goPage('rdzx')"><span><img src="images/06.png"/></span>热点咨询</div>
+                <div class="list" @click="goPage('rgcl')"><span><img src="images/07.png"/></span>人工处理</div>
+                <div class="list" @click="goPage('zjyy')"><span><img src="images/08.png"/></span>专家预约</div>
+                <div class="list" @click="goPage('swjk')"><span><img src="images/09.png"/></span>三维监控</div>
+            </div>
+        </div>
+    </div>
+    <!-- built files will be auto injected -->
+    <script src="js/vue.min.js"></script>
+    <script src="js/echarts.min.js"></script>
+    <script>
+        var app2 = new Vue({
+            el: '#app',
+            data: {
+                message: '页面加载于 ' + new Date().toLocaleString()
+            },
+            methods: {
+                goPage: function(pagename){
+                    location.href = pagename + '.html';
+                },
+                
+                initTran: function(){
+                    var canvas = document.getElementById("mycanvas"),
+                        ctx = canvas.getContext("2d"),
+                        w = canvas.width = window.innerWidth,
+                        h = canvas.height = window.innerHeight,
+                        particles = [],
+                        pos = {x:w/2,y:h/2};
+
+                    function Particle(){
+                        this.x = pos.x;
+                        this.y = pos.y;
+                        this.r = 0.03;
+                        this.color = "#" + ((Math.random()*0xffffff) | 0).toString(16);
+                        this.vx = random(-5,5); 
+                        this.vy = random(-3,3); 
+                    }
+
+                    Particle.prototype.update = function(){
+                        this.x += this.vx;
+                        this.y += this.vy;
+                        this.r += 0.02;
+                    }
+
+                    Particle.prototype.draw = function(){
+                        ctx.beginPath();
+                        ctx.fillStyle = this.color;
+                        ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
+                        ctx.fill();
+                    }
+
+                    function spawn(){
+                        var p = new Particle();
+                        particles.push(p);
+                    }
+
+                    function render(){
+                        ctx.fillStyle = "rgba(0,0,0,.1)";
+                        ctx.fillRect(0,0,w,h);
+                        for (var i = 0; i < particles.length; i++) {
+                            var p = particles[i];
+                            p.draw();
+                            p.update();
+                            p.r > 5 && particles.splice(i,1)
+                        }
+                    }
+
+                    ~function(){
+                        spawn();
+                        render();
+                        requestAnimationFrame(arguments.callee);
+                    }()
+
+                    // var p = new Particle();
+                    // console.log(p)
+
+                    function random(min,max){
+                        return Math.random()*(max-min)+min;
+                    }
+
+                    // document.onmousemove = function(e){
+                    // 	pos.x = e.pageX;
+                    // 	pos.y = e.pageY;
+                    // }
+                },
+            },
+            mounted() {
+                this.initTran();    
+            }
+        })
+    </script>
+</body>
+
+</html>

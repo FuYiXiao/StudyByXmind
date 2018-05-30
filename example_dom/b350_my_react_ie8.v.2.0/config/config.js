@@ -118,11 +118,14 @@ module.exports = {
     //是否将样式独立样式表
     a_b_ifExtractCss : l_b_ifExtractCss,
 
+   //是否对CSS进行压缩  嵌套输出方式 nested  展开输出方式 expanded 紧凑输出方式 compact 压缩输出方式 compressed
+    a_b_howOutPutCss:'expanded', 
+
     //是否支持IE8
     supportIE8:true,
 
-    //sourceMap的方式
-    devtool:'inline-source-map',
+    //sourceMap的方式 eval-source-map inline-source-map
+    devtool:'eval-source-map',
 
     //项目所需的私有文件
     pripage:[
@@ -187,16 +190,20 @@ module.exports = {
 
     //是否将样式独立样式表
     a_b_ifExtractCss : true,
-    
+
+   //是否对CSS进行压缩  嵌套输出方式 nested  展开输出方式 expanded 紧凑输出方式 compact 压缩输出方式 compressed
+    a_b_howOutPutCss:'compressed', 
+
     //是否支持IE8
     supportIE8:true,
 
-    //sourceMap的方式
-    devtool:'inline-source-map',
-
+    //sourceMap的方式 hidden-source-map cheap-source-map
+    devtool:'cheap-hidden-source-map',
+    
     //项目所需的私有文件
     pripage:[
 
+      /*
       //将样式放到样式<style>里面
       new StyleExtHtmlWebpackPlugin({
         //是否压缩
@@ -204,8 +211,34 @@ module.exports = {
         //是否开启插件
         enabled:true,
         cssRegExp:/report.css$/
+      }),
+      new  HtmlWebpackInlineStylePlugin(),
+      */
+      //生产模式下对JS进行压缩
+      /*
+      new webpack.optimize.UglifyJsPlugin({
+          //是否支持IE8
+          ie8:true,
+          //是否生成sourceMap
+          sourceMap: false,
+          // 取值： {warnings:false} 表示取消警告
+          compress:{warnings:false},
+          // except 表示这些不会转意
+          mangle:{
+              except:['$super','$','exports','require']
+          }
       })
-      
+      */
+      //ie8 兼容的系列处理
+      new webpack.optimize.UglifyJsPlugin({
+          compress: {screw_ie8: false},
+          output: {screw_ie8: false},
+          mangle: {
+            screw_ie8: false, 
+            except:['$super','$','exports','require']
+          },
+          support_ie8: true
+      })
     ],
 
     //图片的路径 publicPath

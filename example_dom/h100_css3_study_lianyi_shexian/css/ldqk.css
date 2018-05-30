@@ -1,0 +1,156 @@
+.main{
+    background-image: url(../images/bg.png);
+    background-size: 100% 100%;
+}
+.content .logo-title{
+    width: 678px;
+    height: 64px;
+    position: relative;
+    top: 27px;
+    background-image: url(../images/11.png);
+    background-size: 100% 100%;
+}
+.content  .return{
+    position: absolute;
+    top: 27px;
+    right: 27px;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    color: #a7b8ea;
+    font-size: 16px;
+}
+.content  .return span{
+    display: block;
+    width: 38px;
+    height: 27px;
+    background-image: url(../images/12.png);
+    background-size: 100% 100%;
+}
+.content .feichuan{
+    position: absolute;
+    top: 180px;
+    left: 100px;
+    width: 372px;
+    height: 306px;
+    background-image: url(../images/6_09.png);
+    background-size: 100% 100%;
+
+}
+.content .feichuan::before{
+    position: absolute;
+    content: "";
+    width: 110px;
+    top: 250px;
+    left: 260px;
+    height: 66px;
+    background-image: url(../images/quan.png);
+    background-size: 100% 100%;
+    transform: scale(.3);
+    animation:mymove 1.5s infinite;
+}
+.content .feichuan::after{
+    position: absolute;
+    content: "";
+    width: 110px;
+    width: 110px;
+    top: 250px;
+    left: 260px;
+    height: 66px;
+    background-image: url(../images/quan.png);
+    background-size: 100% 100%;
+    transform: scale(2);
+    animation:mymove2 1.5s infinite;
+}
+.content .feichuan div::after{
+    position: absolute;
+    content: "";
+    width: 110px;  
+    width: 110px;
+    top: 250px;
+    left: 260px;
+    height: 66px;
+    background-image: url(../images/quan.png);
+    background-size: 100% 100%;
+    transform: scale(4);
+    animation:mymove3 1.5s infinite;
+}
+@keyframes mymove{
+    from{
+        transform: scale(.3);
+    }
+    to{
+        transform: scale(.5);
+        opacity: 0;   
+    }
+}
+@keyframes mymove2{
+    from{
+        transform: scale(1);
+    }
+    to{
+        transform: scale(2);
+        opacity: 0;   
+    }
+}
+@keyframes mymove3{
+    from{
+        transform: scale(2);
+    }
+    to{
+        transform: scale(4);
+        opacity: 0;   
+    }
+}
+.content .map{
+    position: absolute;
+    top: 50px;
+    right: 100px;
+    width: 578px;
+    height: 677px;
+    background-image: url(../images/6_05.png);
+    background-size: 100% 100%;
+
+}
+.content .total{
+    width: 90%;
+    height: 180px;
+    background-color: rgba(0,0,0,.7);
+    position: absolute;
+    bottom: 20px;
+    left: 5%;
+    z-index: 1;
+    display: flex;
+    align-items: center
+}
+.content .total .phone{
+    width: 225px;
+    height: 152px;
+    background-image: url(../images/6_13.png);
+    background-size: 100% 100%;
+
+}
+.content .total .info{
+
+}
+.content .total .info h3{
+    color: #fff;
+    font-size: 34px;
+    margin-bottom: 10px;
+}
+.content .total .info p{
+    color: #fcdb76;
+    font-size: 102px;
+}
+.content .total .info p label{
+    position: relative;
+    top: -10px;
+    color: #fcdb76;
+    font-size: 90px;
+}
+.echart-box div{
+    margin: 0 auto;
+    width: 1000px;
+    height: 500px;
+}

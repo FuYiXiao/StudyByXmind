@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>shuiju</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/rdzx.css">
+</head>
+
+<body>
+    <div id="app" class="main">
+        <div class="content">
+            
+            <div class="logo-title"></div>
+            <div class="return" @click="returnLast">
+                <span></span>返回</div>
+            <div class="pie-box">
+                <div id="main"></div>
+            </div>
+            <div class="right-box">
+                <div class="title">地税</div>
+                <div class="info-parent" v-for="(shui,index) in shuilist">
+                    <div class="info-box">
+                        <div>{{shui}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- built files will be auto injected -->
+    <script src="js/vue.min.js"></script>
+    <script src="js/echarts.min.js"></script>
+    <script>
+        var app2 = new Vue({
+            el: '#app',
+            data: {
+                tempidx: 1,// 默认显示第一个
+                rightData: {},
+                autoPlay: null,
+                shuilist:['征收管理','个人所得税','企业所得税','营业税','印花税','契税','残疾人就业保障金','社会保险费','水利建设专项资金']
+            },
+            methods: {
+                returnLast: function () {
+                    history.back(-1);
+                },
+                getData: function(idx){
+                    // 默认根据城市id选择， 目前是从1到9
+                    this.creatOption();
+                },
+                creatOption: function (data) {
+                    let option = {
+                        
+                        color:["#ffff5a",'#ff3631','#00d0a8','#ff8600'],
+                        legend: {
+                            orient: 'vertical',
+                            left: 'left',
+                            top: 'center',
+                            data: ['财政','地税','国税','其他'],
+                            textStyle: {
+                                fontSize: 16,
+                                color: '#fff'
+                            }
+                        },
+                        series : [
+                            {
+                                name: '访问来源',
+                                type: 'pie',
+                                radius : '55%',
+                                center: ['50%', '60%'],
+                                data:[
+                                    {value:33, name:'财政'},
+                                    {value:35, name:'地税'},
+                                    {value:20, name:'国税'},
+                                    {value:12, name:'其他'}
+                                ],
+                                label: {
+                                    normal: {
+                                        show: true,
+                                        fontSize: 16,
+                                        formatter:function(data){
+                                            return data.data.name+''+data.data.value+'%';
+                                        }
+                                    }
+                                },
+                                itemStyle: {
+                                    emphasis: {
+                                        shadowBlur: 10,
+                                        shadowOffsetX: 0,
+                                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                    }
+                                }
+                            }
+                        ]
+                    };
+                    this.initCanvas(option);
+                },
+                initCanvas: function (option) {
+                    var myChart = echarts.init(document.getElementById('main'));
+                    myChart.setOption(option);
+                }
+            },
+            mounted() {
+                this.getData();   
+            }
+        })
+    </script>
+</body>
+
+</html>

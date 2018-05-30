@@ -1,0 +1,208 @@
+.main{
+    background-image: url(../images/bg.png);
+    background-size: 100% 100%;
+}
+.content .logo-title{
+    width: 570px;
+    height: 64px;
+    position: relative;
+    top: 27px;
+    background-image: url(../images/7_tit.png);
+    background-size: 100% 100%;
+}
+
+.charts-box{
+    position: absolute;
+    left: 100px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 602px;
+    height: 316px;
+    display: flex;
+}
+.charts-box .left{
+    width: 352px;
+    height: 316px;
+    background-image: url(../images/3_2.png);
+    background-size: 100% 100%;
+}
+.charts-box .left .list{
+    display: flex;
+    padding-left: 10px;
+    overflow: hidden;
+    height: 60px;
+    text-align: center;
+    color: #fff;
+    line-height: 60px;
+}
+.charts-box .left .list:last-child{
+    height: 61px;
+    line-height: 61px;
+}
+.charts-box .left .list .idx{
+    background-color: rgba(0,0,0,.6);
+    height: 61px;
+    color: #fff;
+    width: 20px;
+    margin-right: 5px;
+}
+.charts-box .left .list .con{
+    display: flex;
+    align-items: center;
+    width: 250px;
+    line-height: 20px;
+    height: 61px;
+    color: #fff;
+    text-align: left;
+    margin-left: 10px;
+}
+.charts-box .right {
+    flex: 1;
+    position: relative;
+    top: 15px;
+}
+.charts-box .right .percent{
+    display: flex;
+    padding-left: 5px;
+    height: 60px;
+    text-align: center;
+    line-height: 60px;
+    color: #fff;
+    border-radius: 0 10px 10px 0;
+}
+.charts-box .right .percent:nth-child(1){
+    background-color: #fd453a;
+    min-width: 50px;
+}
+.charts-box .right .percent:nth-child(2){
+    background-color: #ff8600;
+    min-width: 50px;
+}
+.charts-box .right .percent:nth-child(3){
+    background-color: #fcdb76;
+    min-width: 50px;
+}
+.charts-box .right .percent:nth-child(4){
+    background-color: #1adfa6;
+    min-width: 50px;
+}
+.charts-box .right .percent:nth-child(5){
+    background-color: #1acfdf;
+    min-width: 50px;
+}
+.charts-box .right .percent:last-child{
+    height: 61px;
+    line-height: 61px;
+}
+.right-box{
+    position: absolute;
+    right: 0;
+    top: 60px;
+    width: 409px;
+}
+.right-box .title{
+    width: 409px;
+    height: 50px;
+    line-height: 50px;
+    padding-left: 20px;
+    margin-top: 20px;
+
+    color: #fff;
+    font-size: 26px;
+    border-bottom: 1px dotted #fff;
+}
+.right-box .title img{
+    width: 30px;
+    position: relative;
+    top:2px;
+}
+.info-parent{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    margin-right: 50px;
+}
+.info-box{
+    width: 100%;
+    flex: 1;
+    height: 50px;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: rgba(0,0,0,.6);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    color: #fff;
+    font-size: 14px;
+    margin-right: 10px;
+}
+.info-box:last-child{
+    margin-right: 0
+}
+.info-box.bigger{
+    font-size: 18px;
+}
+.info-table{
+    margin-right: 50px;
+    margin-top: 30px;
+    color: #fff;
+    background-color: rgba(0,0,0,.6);
+    font-size: 14px;
+}
+.info-table table{
+    width: 100%;
+}
+.info-table th,
+.info-table td{
+    height: 45px;
+    line-height: 45px;
+    border-bottom: 1px solid #3169a6;
+    border-right: 1px solid #3169a6;
+    text-align: center;
+}
+.info-parent.percent-box .info-box{
+    position: relative;
+}
+.info-parent.percent-box .info-box::after{
+    position: absolute;
+    content: "";
+    width: 90%;
+    left: 5%;
+    bottom:5px;
+    height: 2px;
+    background-color: #fd453a
+}
+.info-parent.percent-box .info-box:nth-child(2)::after{
+
+    background-color: #1adfa6
+}
+.info-parent.percent-box .info-box:nth-child(3)::after{
+    
+    background-color: #fcdb76
+}
+.info-parent.percent-box .info-box:nth-child(4)::after{
+    
+    background-color: #fff
+}
+.info-parent.percent-box1{
+    margin-top: 5px;
+    padding: 5px;
+    background-color: rgba(0,0,0,.6)
+}
+.info-parent.percent-box1 .color-box {
+    height: 10px;
+}
+.info-parent.percent-box1 .color-box.busy{
+    background-color: #fd453a
+}
+.info-parent.percent-box1 .color-box.ready{
+    background-color: #1adfa6
+}
+.info-parent.percent-box1 .color-box.study{
+    background-color: #fcdb76
+}
+.info-parent.percent-box1 .color-box.rest{
+    background-color: #fff
+}

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>shuiju</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/sscx.css">
+</head>
+
+<body>
+    <div id="app" class="main">
+        <div class="content">
+            <div class="logo-title"></div>
+            <div class="return" @click="returnLast">
+                <span></span>返回</div>
+            <div class="map">
+                <div class="city-list city01" :class="{'active':tempidx==1}" @mouseover="getData(1)" @mouseout="autoPlayFun"><img :src="tempidx==1?'images/city_031.png':'images/city_03.png'" alt=""><p>张家港市</p></div>
+                <div class="city-list city02" :class="{'active':tempidx==2}" @mouseover="getData(2)" @mouseout="autoPlayFun"><img :src="tempidx==2?'images/city_071.png':'images/city_07.png'" alt=""><p>常熟市</p></div>
+                <div class="city-list city03" :class="{'active':tempidx==3}" @mouseover="getData(3)" @mouseout="autoPlayFun"><img :src="tempidx==3?'images/city_101.png':'images/city_10.png'" alt=""><p>太仓市</p></div>
+                <div class="city-list city04" :class="{'active':tempidx==4}" @mouseover="getData(4)" @mouseout="autoPlayFun"><img :src="tempidx==4?'images/city_151.png':'images/city_15.png'"alt=""><p>相城区</p></div>
+                <div class="city-list city05" :class="{'active':tempidx==5}" @mouseover="getData(5)" @mouseout="autoPlayFun"><img :src="tempidx==5?'images/city_181.png':'images/city_18.png'" alt=""><p>昆山市</p></div>
+                <div class="city-list city06" :class="{'active':tempidx==6}" @mouseover="getData(6)" @mouseout="autoPlayFun"><img :src="tempidx==6?'images/city_221.png':'images/city_22.png'" alt=""><p>虎丘区</p></div>
+                <div class="city-list city07" :class="{'active':tempidx==7}" @mouseover="getData(7)" @mouseout="autoPlayFun"><img :src="tempidx==7?'images/city_251.png':'images/city_25.png'" alt=""><p>姑苏区</p></div>
+                <div class="city-list city08" :class="{'active':tempidx==8}" @mouseover="getData(8)" @mouseout="autoPlayFun"><img :src="tempidx==8?'images/city_311.png':'images/city_31.png'" alt=""><p>吴中区</p></div>
+                <div class="city-list city09" :class="{'active':tempidx==9}" @mouseover="getData(9)" @mouseout="autoPlayFun"><img :src="tempidx==9?'images/city_351.png':'images/city_35.png'" alt=""><p>吴江区</p></div>
+            </div>
+            <div class="right-box">
+                <div class="title">{{citylist[tempidx-1]}}</div>
+                <div class="info-parent">
+                    <div class="info-box bigger">
+                        <div>当天人工服务量</div>
+                        <div>{{rightData.dtrgfwl}}</div>
+                    </div>
+                </div>
+                <div class="info-parent">
+                    <div class="info-box bigger">
+                        <div>省中心解决量</div>
+                        <div>{{rightData.szxjjl}}</div>
+                    </div>
+                </div>
+                <div class="info-parent">
+                    <div class="info-box"><p>转接电话</p> <p>{{rightData.zjdh}}</p></div>
+                    <div class="info-box"><p>接通率</p> <p>{{rightData.jtl}}</p></div>
+                </div>
+                <div class="info-parent">
+                    <div class="info-box"><p>转接单</p> <p>{{rightData.zjd}}</p></div>
+                    <div class="info-box"><p>及时率</p> <p>{{rightData.jsl}}</p></div>
+                </div>
+                <div class="info-table" >
+                    <table>
+                        <thead>
+                            <tr><th>姓名</th><th>状态</th><th>当天接听量</th><th>转接单处理量</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(rowinfo,index) in rightData.tablelist" :key="index">
+                                <td>{{rowinfo.name}}</td>
+                                <td>{{rowinfo.staus}}</td>
+                                <td>{{rowinfo.dtjtl}}</td>
+                                <td>{{rowinfo.zjdcll}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- built files will be auto injected -->
+    <script src="js/vue.min.js"></script>
+    <script src="js/echarts.min.js"></script>
+    <script>
+        var app2 = new Vue({
+            el: '#app',
+            data: {
+                tempidx: 1,// 默认显示第一个
+                rightData: {},
+                autoPlay: null,
+                citylist:['张家港市','常熟市','太仓市','相城区','昆山市','虎丘区','姑苏区','吴中区','吴江区']
+            },
+            methods: {
+                returnLast: function () {
+                    history.back(-1);
+                },
+                getData: function(idx){
+                    // 默认根据城市id选择， 目前是从1到9
+                    if(idx){
+                        this.tempidx = idx;
+                        clearInterval(this.autoPlay)
+                    }
+                    idx = idx ? idx : this.tempidx;
+                    // tablelist 最好控制在5条，没有补个空的
+                    this.rightData = {
+                        dtrgfwl: 4,
+                        szxjjl: 3,
+                        zjdh: 10,
+                        jtl: 100,
+                        zjd: 8,
+                        jsl: 100,
+                        tablelist:[{
+                            id: 1,
+                            name: 'xxx',
+                            staus: 'ss',
+                            dtjtl: 10,
+                            zjdcll: 10
+                        },{
+                            id: 1,
+                            name: 'xxx',
+                            staus: 'ss',
+                            dtjtl: 10,
+                            zjdcll: 10
+                        },{
+                            id: 1,
+                            name: 'xxx',
+                            staus: 'ss',
+                            dtjtl: 10,
+                            zjdcll: 10
+                        },{
+                            id: 1,
+                            name: 'xxx',
+                            staus: 'ss',
+                            dtjtl: 10,
+                            zjdcll: 10
+                        },{
+                            id: 1,
+                            name: '',
+                            staus: '',
+                            dtjtl: '',
+                            zjdcll: ''
+                        }]
+                    }
+                },
+                autoPlayFun(){
+                    this.autoPlay = setInterval(()=>{
+                        // 右边城市会变化，可以在着里面设置请求目前城市对应的数据
+                        this.tempidx = this.tempidx + 1;
+                        if(this.tempidx == 10) this.tempidx = 1;
+                        this.getData();
+                    },10000);
+                }
+            },
+            mounted() {
+                this.getData();                
+                this.autoPlayFun();
+            }
+        })
+    </script>
+</body>
+
+</html>

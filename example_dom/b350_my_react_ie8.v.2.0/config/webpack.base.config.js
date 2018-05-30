@@ -168,13 +168,14 @@ module.exports = {
                   sourceMap: true
               }
             },
-            // outputStyle=compressed 模式下的 sourceMap 有问题的 ，expanded 就没有问题了
+            // outputStyle=compressed  压缩模式下的 sourceMap 有问题的 ，expanded 就没有问题了
             {
               loader: "sass-loader",
               options: {
                   sourceMap: true,
                   //sourceMapContents:false,
-                  outputStyle:'expanded',
+                  //outputStyle:'expanded',
+                  outputStyle:process.env.NODE_ENV === 'production'? config.build.a_b_howOutPutCss:config.dev.a_b_howOutPutCss, 
                   includePaths:[path.resolve(config.context, "./node_modules/compass-mixins/lib")]
               }
             },

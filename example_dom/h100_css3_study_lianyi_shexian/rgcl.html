@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>shuiju</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/rgcl.css">
+</head>
+<body>
+    <div id="app" class="main">
+        <div class="content">
+            <div class="logo-title"></div>
+            <div class="return" @click="returnLast"><span></span>返回</div>
+            <div class="left_bg"></div>
+            <div class="right_bg"></div>
+            <div class="click-box">
+                <div class="list-box" @click="goPage(1)">
+                    <img src="images/rgcl_02.png"/>
+                    <p>当前人工处理情况</p>
+                </div>
+                <div class="list-box" @click="goPage(2)">
+                    <img src="images/rgcl_03.png"/>
+                    <p>当前咨询服务专员情况</p>
+                </div>
+                <div class="list-box" @click="goPage(3)">
+                    <img src="images/rgcl_04.png"/>
+                    <p>工单管理</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- built files will be auto injected -->
+    <script src="js/vue.min.js"></script>
+    <script src="js/echarts.min.js"></script>
+    <script>
+        var app2 = new Vue({
+            el: '#app',
+            data: {
+            },
+            methods:{
+                returnLast: function(){
+                    history.back(-1);
+                },
+                goPage(idx){
+                    alert(`点击了第${idx}个菜单`)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

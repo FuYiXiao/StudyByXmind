@@ -12,17 +12,20 @@ $baseFontFamily:"Microsoft YaHei" !default;
 //页面基本的行高
 $baseFontLineHeight:2 !default;
 
+//页面的标题字体
+$baseTitleColor:#333 !default;
+
 //页面一般文字颜色
-$baseFontColor:#333 !default;
+$baseFontColor:#666 !default;
 
 //页面非重要内容文字颜色
 $baseFontMinorColor:#999 !default;
 
-//页面的标题字体
-$baseTitleColor:#000 !default;
+//页面的重要文字颜色
+$baseSepColor:#f24f0f  !default;
 
 //页面链接颜色
-$baseLinkColor:#08639a !default;
+$baseLinkColor:#42acfe !default;
 $baseLinkColors:$baseLinkColor darken($baseLinkColor,15%) lighten($baseLinkColor,15%) lighten($baseLinkColor,20%) darken($baseLinkColor,20%)  !default;
 
 //页面间距
@@ -36,6 +39,7 @@ $baseZindex:10 !default;
 
 //页面最小宽度
 $baseBodyWidth:780px !default;
+
 
 
 .clearfix{

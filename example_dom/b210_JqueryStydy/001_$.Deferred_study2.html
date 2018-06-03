@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title>Style Guide</title>
+
+  <meta name="description" content="不超过150个字符">
+  <meta name="keywords" content="">
+  <meta name="author" content="name, email@gmail.com">
+
+  <!-- 为移动设备添加 viewport -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script type="text/javascript" src="jquery.min.js"></script>
+</head>
+<body>
+
+<script type="text/javascript">
+
+
+
+	// 定义主题
+	var subject = (function(){
+		var dfd = $.Deferred();
+		return dfd;
+	})();
+
+	// 两个观察者
+	var fn1 = function(content){
+		console.log("fn1-progress:: " + content );
+	}
+
+	var fn2 = function(content){
+		console.log("fn2-done: " + content );
+	}
+	
+	var fn3 = function(content){
+		console.log("fn3-progress: " + content );
+	};
+	var fn4 = function(content){
+		console.log("fn4-done: " + content );
+	}
+
+	// 发布内容
+	subject.progress(fn3);
+	
+
+	// 注册观察者
+	subject
+			.done( fn2 );
+			
+			
+			
+
+	subject.notify ("Alice-1");
+
+	subject.progress(fn1);	
+	
+	//后续注册，也会执行，只要状态没变
+
+	//subject.resolve("F-1");
+
+	subject.notify ("Alice2");
+
+    //subject.resolve("F-2");
+	
+	subject.notify ("Alice3");
+	
+	// 注册观察者
+	subject
+			.done( fn4 );
+			
+	//subject.resolve("F-3");
+	
+	
+
+</script>
+
+
+</body>
+</html>

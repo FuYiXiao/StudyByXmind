@@ -24,6 +24,9 @@ $baseFontMinorColor:#999 !default;
 //页面的重要文字颜色
 $baseSepColor:#f24f0f  !default;
 
+//边框颜色
+$baseBorderColor:#e1e2e3;
+
 //页面链接颜色
 $baseLinkColor:#42acfe !default;
 $baseLinkColors:$baseLinkColor darken($baseLinkColor,15%) lighten($baseLinkColor,15%) lighten($baseLinkColor,20%) darken($baseLinkColor,20%)  !default;

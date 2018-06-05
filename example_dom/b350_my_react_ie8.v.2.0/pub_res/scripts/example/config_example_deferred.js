@@ -10,8 +10,8 @@ window.GloabConfig={
     ignoreComment:true,
 
     /*加载页面 解读信息的 Ajax 方法
-     @param urlParam {Stirng}
-     @param param_b_ifSendAjax {Bollean}
+     @param urlParam {Stirng} 
+     @param param_b_ifSendAjax {Bollean} 是否发送ajax请求
      @return null
     * */
 

@@ -22,7 +22,7 @@ const HtmlWebpackInlineStylePlugin =  require('html-webpack-inline-style-plugin'
 const l_s_rootPath = path.resolve(__dirname, '../');
 
 //当前项目所在的目录
-const l_s_currentPath=path.resolve(l_s_rootPath, './projects/fengxian_report/');
+const l_s_currentPath=path.resolve(l_s_rootPath, './projects/010_kuai_su_fan_ying/');
 
 //开发环境的输出路径
 const l_s_divPath = path.resolve( l_s_currentPath, 'dev' );
@@ -31,7 +31,9 @@ const l_s_divPath = path.resolve( l_s_currentPath, 'dev' );
 const l_s_prodPath = path.resolve( l_s_currentPath, 'dist' );
 
 //开发环境的静态资源路径
-const l_s_devAssetsPublicPath = "static/";
+//const l_s_devAssetsPublicPath = "static/";
+//一定要这样写如果要配合公共资源的话
+const l_s_devAssetsPublicPath = "./";  
 
 //生产环境的静态资源路径
 const l_s_prodAssetsPublicPath = "./";
@@ -41,7 +43,7 @@ const l_s_assetsPublicPath = (process.env.NODE_ENV === 'production'? l_s_prodAss
 
 //配置输出的文件名,根据静态资源路径路径指定输出路径
 const entryObj = {};
-entryObj[(l_s_assetsPublicPath + "scripts/report")] = path.resolve(l_s_currentPath, 'src/main.js' );
+entryObj[(l_s_assetsPublicPath + "scripts/index")] = path.resolve(l_s_currentPath, 'src/main.js' );
 
 //是否复制公共资源到项目
 const l_b_ifCopyPub_res = false;
@@ -76,8 +78,8 @@ module.exports = {
   pubPage:[
   
         new HtmlWebpackPlugin({
-          title: '报文',
-          filename: l_s_assetsPublicPath + '/html/index.html',
+          title: '首页',
+          filename: l_s_assetsPublicPath + 'html/index.html',
           template: path.resolve(l_s_rootPath, l_s_currentPath, 'src/static/html/index.html' ),
           //需要排除的文件 
           excludeChunks:process.env.NODE_ENV === 'production' ? [ 'scripts/base' ] : [],
@@ -110,16 +112,16 @@ module.exports = {
     assetsRoot:l_s_divPath,
 
     //如果按需加载，运行时加载的公共路径设置
-    assetsPublicPath: '/',
+    assetsPublicPath: '/dev/',
 
-    //静态资源的存放目录 完整路径就是 /dev/static
+    //静态资源的存放目录 完整路径就是 /dev/static 改为 /dev/
     assetsSubDirectory: l_s_devAssetsPublicPath,
 
     //是否将样式独立样式表
     a_b_ifExtractCss : l_b_ifExtractCss,
 
-   //是否对CSS进行压缩  嵌套输出方式 nested  展开输出方式 expanded 紧凑输出方式 compact 压缩输出方式 compressed
-    a_b_howOutPutCss:'expanded', 
+    //是否对CSS进行压缩  嵌套输出方式 nested  展开输出方式 expanded 紧凑输出方式 compact 压缩输出方式 compressed
+    a_b_howOutPutCss:'expanded',
 
     //是否支持IE8
     supportIE8:true,
@@ -129,7 +131,16 @@ module.exports = {
 
     //项目所需的私有文件
     pripage:[
-	
+      //将样式放到样式<style>里面
+      /*
+      new StyleExtHtmlWebpackPlugin({
+        //是否压缩
+        minify: true,
+        //是否开启插件
+        enabled:true,
+        cssRegExp:/report.css$/
+      })
+      */
       //内联样式到DIV里
       /*
       new StyleExtHtmlWebpackPlugin({
@@ -198,11 +209,10 @@ module.exports = {
     supportIE8:true,
 
     //sourceMap的方式 hidden-source-map cheap-source-map
-    devtool:'cheap-hidden-source-map',
-    
+    devtool:'hidden-cheap-source-map',
+
     //项目所需的私有文件
     pripage:[
-
       /*
       //将样式放到样式<style>里面
       new StyleExtHtmlWebpackPlugin({
@@ -220,16 +230,15 @@ module.exports = {
           //是否支持IE8
           ie8:true,
           //是否生成sourceMap
-          sourceMap: false,
+          sourceMap: false, 
           // 取值： {warnings:false} 表示取消警告
-          compress:{warnings:false},
+          compress: false,  //{warnings:false},
           // except 表示这些不会转意
-          mangle:{
-              except:['$super','$','exports','require']
-          }
+          mangle:false,   //{except:['$super','$','exports','require']}
       })
       */
       //ie8 兼容的系列处理
+      /*
       new webpack.optimize.UglifyJsPlugin({
           compress: {screw_ie8: false},
           output: {screw_ie8: false},
@@ -239,6 +248,7 @@ module.exports = {
           },
           support_ie8: true
       })
+      */
     ],
 
     //图片的路径 publicPath

@@ -20,6 +20,7 @@ function initSingleEchart(param_s_echartId,option,param_ifRezise){
             _echartDomArrays.push(myChart);
         }
     }
+    return myChart;
 }
 
 /*初始化 Echart 表函数

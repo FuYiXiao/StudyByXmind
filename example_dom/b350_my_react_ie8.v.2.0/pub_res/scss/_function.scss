@@ -39,3 +39,42 @@
   }
 }
 
+//文字截取并且显示...
+@mixin ellipsis(){
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+//框体使用图片背景图来替换文字的方式
+@mixin imgBgReplaceText(){
+  background-color: transparent;
+  border: 0;
+  overflow: hidden;
+  &:before {
+    content: "";
+    display: block;
+    width: 0;
+    height: 150%;
+  }
+}
+
+//链接的一般样式
+@mixin linkStyle($color:#38f,$botline:false){
+  //                    $normal,  $hover,           $active,              $visited,          $focus
+  @include link-colors( $color, darken($color,15%), darken($color,25%), lighten($color,10%), darken($color,10%),   ); 
+  @if $botline == true {
+    text-decoration: none;
+    &:hover{
+      text-decoration:underline;
+    };
+  } @else if $botline == "show" {
+    text-decoration: underline;
+    &:hover{
+      text-decoration: none;
+    };
+  } @else {
+
+  }
+}
+

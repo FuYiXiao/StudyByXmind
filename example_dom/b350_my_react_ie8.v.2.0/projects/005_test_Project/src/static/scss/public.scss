@@ -1,0 +1,64 @@
+@charset "UTF-8";
+
+@import "compass/reset";
+
+/*页面的基本参数和函数*/
+@import "~pubScouce/scss/_function.scss";
+
+/*页面布局*/
+@import "~pubScouce/scss/_layout.scss";
+
+/*页面的整体框架*/
+@import "~pubScouce/scss/_wrapper.scss";
+
+/*按钮样式*/
+@import "~pubScouce/scss/modules/_buttom.scss";
+
+
+.pub-wrapper{
+    
+    .pre-line{
+        @include clearfix();
+        padding: $basePadding;
+    }
+    .triangle{
+        @include triangle(top,5px,#ff8700);
+    }
+
+    .line{
+        @include ellipsis();
+    }
+
+    .imagebox{
+        @include imgBgReplaceText();
+        width: 58px;
+        height: 58px;
+        background-image:url(../images/icon-user.png);
+    }
+
+    .link1{
+         @include linkStyle($color:#38f,$botline:false);
+    }
+
+    .link2{
+         @include linkStyle($color:#38f,$botline:true);
+    }
+
+    .link3{
+         @include linkStyle($color:#38f,$botline:"show");
+    }
+
+    .btn{
+        display: inline-block;
+        @include btnSkinDarken();
+    }
+
+    .btn2{
+        display: inline-block;
+        @include btnSkinDarken($wordColor:#38f, $bgColor:#38f);
+    }
+
+}
+
+
+

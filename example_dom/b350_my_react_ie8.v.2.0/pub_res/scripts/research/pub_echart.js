@@ -22,7 +22,14 @@ function initSingleEchart(param_s_echartId,option,param_ifRezise){
     }
     return myChart;
 }
-
+/*获取特定的Echart*/
+function getEchartDom( param_s_Id ){
+    for(var i=0; i< _echartDomArrays.length; i++ ){
+        if(param_s_Id==_echartDomArrays[i]._dom.id){
+            return _echartDomArrays[i];
+        }
+    }
+}
 /*初始化 Echart 表函数
  * */
 function _windowResize(){
@@ -44,5 +51,6 @@ function eventOn(){
 eventOn();
 
 module.exports = {
-    "initSingleEchart":initSingleEchart
+    "initSingleEchart":initSingleEchart,
+    "getEchartDom":getEchartDom
 };

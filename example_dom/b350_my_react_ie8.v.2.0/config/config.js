@@ -22,7 +22,7 @@ const HtmlWebpackInlineStylePlugin =  require('html-webpack-inline-style-plugin'
 const l_s_rootPath = path.resolve(__dirname, '../');
 
 //当前项目所在的目录
-const l_s_currentPath=path.resolve(l_s_rootPath, './projects/010_kuai_su_fan_ying/');
+const l_s_currentPath=path.resolve(l_s_rootPath, './projects/005_test_Project/');
 
 //开发环境的输出路径
 const l_s_divPath = path.resolve( l_s_currentPath, 'dev' );

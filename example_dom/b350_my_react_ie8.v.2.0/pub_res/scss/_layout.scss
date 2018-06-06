@@ -5,7 +5,7 @@
 
 //页面间距
 $basePadding:10px !default;
-$gridColumns:24;
+$gridColumns:24 !default;
 
 %col-base{
     float:left;
@@ -19,6 +19,8 @@ $gridColumns:24;
     .layout-cnt{
         @include clearfix();
         box-sizing: border-box;
+        padding-left: $basePadding;
+        padding-right: $basePadding;
     }
     .layout-row{
         @include clearfix();

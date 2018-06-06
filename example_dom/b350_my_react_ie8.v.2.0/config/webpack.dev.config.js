@@ -31,7 +31,8 @@ module.exports = merge(
       // 开发模式的服务器
       devServer: {
          //开发模式下服务器的目录
-         contentBase: config.dev.assetsRoot,
+         //contentBase: config.dev.assetsRoot,
+         contentBase: config.a_s_currentPath,
          //开启插件热替换
          hot: true
       },

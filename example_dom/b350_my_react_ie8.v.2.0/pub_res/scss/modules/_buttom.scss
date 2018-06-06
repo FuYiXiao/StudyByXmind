@@ -1,0 +1,67 @@
+
+/*公共函数输出按钮样式和一系列函数
+*/
+@mixin btnSkinDarken( $wordColor:#fff, $bgColor:#38f, $Round:5px ){
+    cursor: pointer;
+    color: $wordColor;
+    background-color: $bgColor;
+    border:1px solid darken($bgColor,10%);
+    &:hover{
+        color: $wordColor; 
+        background-color: darken($bgColor,15%);                  
+        border:1px solid darken($bgColor,25%);
+        background-image: none;
+    }
+    &:active,&:focus{
+        background-color: $bgColor;
+        border:1px solid lighten($bgColor,25%);
+    }
+    //圆角
+    &.is-round{
+        border-radius: $Round; 
+    }
+    //阴影
+    &.is-shadow{
+        &:hover{
+            @include box-shadow(inset 1px 1px 2px darken($bgColor,25%));
+        }
+        &:active,&:focus{
+            @include box-shadow(inset 1px 1px 2px darken($bgColor,25%));
+        }
+    }
+    //无背景
+    &.is-plain{
+        color: $wordColor;
+        background-color: transparent;
+        border:1px solid $wordColor; 
+        &:active, &:focus{
+            color: $wordColor; 
+            background-color: transparent;
+        }
+        &:hover{
+            color: darken($wordColor,15%);
+            background-color: transparent;
+        }
+    } 
+    //无边框，无背景   
+    &.is-text{
+        background: none;
+        border:none;
+        color: $wordColor;
+        &:active, &:focus{
+            color: darken($wordColor,25%); 
+        }
+        &:hover{
+            color: darken($wordColor,15%);
+        }
+    }
+    // 禁用按钮
+    &.is-disabled{
+        &,&:active, &:focus, &:hover{
+            background-color: lighten($bgColor,15%);
+            color: $wordColor;
+            border:1px solid lighten($bgColor,25%);
+            cursor: not-allowed;
+        }
+    }
+}

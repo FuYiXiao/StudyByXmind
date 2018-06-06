@@ -16,8 +16,8 @@ window.GloabConfig={
     * */
     //用于发送ajax的记录当前请求的状态
     GetDataAjaxFlag:false,
-    //延迟对象,获取延迟对象，并且注册延时事件progress，只需要一次就可以了
-    GetDataAjaxCallbacks:$.Deferred() ,
+    //回调对象，用于获取数据后回调 add 添加执行对列，缺点是：add的函数，获取不到 this 的作用域
+    GetDataAjaxCallbacks:$.Callbacks() ,
     GetDataAjax:function( urlParam , param_b_ifSendAjax){
         var _this = this; 
         if(_this.GetDataAjaxFlag===false && param_b_ifSendAjax === true){
@@ -27,10 +27,7 @@ window.GloabConfig={
                 dataType:"html",
                 cache:false,
                 success: function(data){
-
-                    //开启状态，可以继续发请求了
                     _this.GetDataAjaxFlag = false;
-
                     var data = jQuery.parseJSON(data)
                     /*
                     //返回数据的结构样例
@@ -38,7 +35,7 @@ window.GloabConfig={
                     };
                     */
                     
-                    _this.GetDataAjaxCallbacks.notify(data);
+                    _this.GetDataAjaxCallbacks.fire(data);
                     //_this.GetDataAjaxCallbacks.fire(data,CallBackObj);
                     //$.proxy( CallBackFun, CallBackObj )(data);
                 },
@@ -47,7 +44,7 @@ window.GloabConfig={
                 }
             });
         }
-        return _this.GetDataAjaxCallbacks.promise(); 
+        return _this.GetDataAjaxCallbacks; 
     }
 
 };

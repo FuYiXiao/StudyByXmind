@@ -1,0 +1,10 @@
+{{each group }}
+    <tr>
+        <td>{{ $value.rank }}</td>
+        <td>
+            <div class="nowrapper">{{ $value.name }}</div>
+        </td>
+        <td>{{ $value.type }}</td>
+        <td  class="num">{{ $value.value }}</td>
+    </tr>
+{{/each}}

@@ -29,6 +29,7 @@ $baseBorderColor:#e1e2e3;
 
 //页面链接颜色
 $baseLinkColor:#42acfe !default;
+//链接的不同状态颜色
 $baseLinkColors:$baseLinkColor darken($baseLinkColor,15%) lighten($baseLinkColor,15%) lighten($baseLinkColor,20%) darken($baseLinkColor,20%)  !default;
 
 //页面间距
@@ -42,7 +43,6 @@ $baseZindex:10 !default;
 
 //页面最小宽度
 $baseBodyWidth:780px !default;
-
 
 
 .clearfix{

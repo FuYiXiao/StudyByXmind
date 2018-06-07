@@ -21,7 +21,7 @@ const HtmlWebpackInlineStylePlugin =  require('html-webpack-inline-style-plugin'
 //设置配置根目录
 const l_s_rootPath = path.resolve(__dirname, '../');
 
-//当前项目所在的目录
+//当前项目所在的目录 005_test_Project  010_kuai_su_fan_ying  min_gan_ren_yuan
 const l_s_currentPath=path.resolve(l_s_rootPath, './projects/005_test_Project/');
 
 //开发环境的输出路径
@@ -47,6 +47,9 @@ entryObj[(l_s_assetsPublicPath + "scripts/index")] = path.resolve(l_s_currentPat
 
 //是否复制公共资源到项目
 const l_b_ifCopyPub_res = false;
+
+//是否压缩JS
+const l_b_ifCompassJs = true;
 
 //是否将样式写入到HTML页面中
 const l_b_ifCssInsertHtml = false;
@@ -126,8 +129,8 @@ module.exports = {
     //是否支持IE8
     supportIE8:true,
 
-    //sourceMap的方式 eval-source-map inline-source-map
-    devtool:'eval-source-map',
+    //sourceMap的方式 eval-source-map inline-source-map source-map
+    devtool:'source-map',
 
     //项目所需的私有文件
     pripage:[
@@ -208,8 +211,8 @@ module.exports = {
     //是否支持IE8
     supportIE8:true,
 
-    //sourceMap的方式 hidden-source-map cheap-source-map
-    devtool:'hidden-cheap-source-map',
+    //sourceMap的方式 hidden-source-map cheap-source-map source-map
+    devtool:'source-map',
 
     //项目所需的私有文件
     pripage:[
@@ -238,17 +241,24 @@ module.exports = {
       })
       */
       //ie8 兼容的系列处理
-      /*
       new webpack.optimize.UglifyJsPlugin({
+          //是否压缩JS的写法
+          test: l_b_ifCompassJs? /\.js($|\?)/i : /\.tc130($|\?)/i,
           compress: {screw_ie8: false},
           output: {screw_ie8: false},
+
+          //是否进行名称混乱
+          /*
           mangle: {
             screw_ie8: false, 
             except:['$super','$','exports','require']
-          },
+          }, 
+          */
+          mangle:false,
+          sourceMap: true,
           support_ie8: true
       })
-      */
+      
     ],
 
     //图片的路径 publicPath

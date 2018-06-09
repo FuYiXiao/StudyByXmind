@@ -19,22 +19,28 @@
 
 <script type="text/javascript">
 
+
 /*
 * 计算含中文字符串的实际长度，或者截取字符串
 * @param str {stirng} 需要处理计算的字符串
-* @param cutStrLength {Number} 需要截取到第几位,
+* @param cutStrLength {Number} 需要截取到第几位,包含这一位
 * @param ifAddDot {Boolean} 截断以后是否追加。。。,
 * @return 情况一： 如果没有参数二，返回字符串真实长度
-* @return 情况二： 如果有参数二，返回一个对象记录截取内容
-* @return 情况三： 如果还有参数三，截取内容后追加...
+* @return 情况二： 如果有参数二，返回一个对象记录截取内容，包括自身
+* @return 情况三： 如果有参数三，并且为false，则不追加...，否则默认追加
 */
 window.GetLengthByCodeOrCut = function(str,cutStrLength,ifAddDot) {
+
   cutStrLength = cutStrLength?cutStrLength:0;
+  ifAddDot = ifAddDot ? ifAddDot : true;
+
   var realLength = 0, len = str.length, charCode = -1;
-  var ifCut=false;
-  var nowStr="";
-  if(!isNaN(cutStrLength)&&cutStrLength!=0){
-    ifCut=true;
+  //是否需要进行截取
+  var ifNeedCut = false;
+  var hasCutStr = false;
+  var nowCutStr = ""; 
+  if( !isNaN(cutStrLength) && cutStrLength!=0 ){
+    ifNeedCut=true;
   }
   for (var i = 0; i < len; i++) {
     charCode = str.charCodeAt(i);
@@ -43,27 +49,22 @@ window.GetLengthByCodeOrCut = function(str,cutStrLength,ifAddDot) {
     }else{
        realLength += 2;
     }
-    nowStr=nowStr+str.charAt(i);
-    if(ifCut&&cutStrLength<=realLength){
-      return {
-        hasCut:true,
-        cutLength:cutStrLength,
-        realLength:realLength,
-        cutStr:ifAddDot?(nowStr+"..."):nowStr,
-        fullStr:str
-      };
+    if(ifNeedCut&&cutStrLength>=realLength){
+      nowCutStr=nowCutStr+str.charAt(i);
+    }else{
+	  
+      hasCutStr=ifNeedCut?true:false;
     }
-  }
-  if(ifCut&&cutStrLength>realLength){
-      return {
-        hasCut:false,
-        fullStr:str,
-    cutStr:nowStr
-      };
-  }else{
-    return realLength;
+  };
+  return {
+    hasCut:hasCutStr,
+    realLength:realLength,
+    cutLength:cutStrLength,
+    cutStr:ifAddDot?(nowCutStr+"..."):nowCutStr,
+    fullStr:str
   }
 };
+
 
 
 var GetLengthByWei = function(str) {

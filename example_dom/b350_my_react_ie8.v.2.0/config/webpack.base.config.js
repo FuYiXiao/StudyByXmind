@@ -27,6 +27,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 //内联样式插件
 const StyleExtHtmlWebpackPlugin =  require('style-ext-html-webpack-plugin');
 
+//E3的转化函数
+var es3ifyPlugin = require('es3ify-webpack-plugin');
+
 module.exports = {
 
   // entry 配置项的根目录
@@ -359,7 +362,7 @@ module.exports = {
       title: 'index'
     })
     */
- 
+    new es3ifyPlugin()
   ]
 
 

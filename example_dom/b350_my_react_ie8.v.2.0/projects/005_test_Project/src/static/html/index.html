@@ -13,8 +13,6 @@
 
     <title><%= htmlWebpackPlugin.options.title %></title>
 
-
-
   </head>
 
   <body>
@@ -52,6 +50,9 @@
           <span class="btn ">span</span>
         </div>
 
+        <div id="MoudleTest">
+        </div>
+
       </div>
 
     </div><!--END class="page-wrapper"-->
@@ -60,19 +61,29 @@
     <script type="text/javascript" src="../scripts/jquery.v1.7.2.js"></script>
 
     <!--ie8 兼容代码 -->
+    <!--
     <script src="../scripts/es5-shim.min.js"></script>
     <script src="../scripts/es5-sham.min.js"></script>
-    <script src="../scripts/json3.min.js"></script>
+    <script src="../scripts/json3.min.js"></script> 
+    -->
 
     <!-- 模板插件 -->
-    <script src="../scripts/template-web.js"></script>
+    <!-- <script src="../scripts/template-web.js"></script> -->
 
     <!--正式环境需要删除这两个JS引用-->
+    <!-- 
     <script type="text/javascript" src="../data/mock.js"></script>
-    <script type="text/javascript" src="../data/mock_data.js"></script>
-    <!--END 正式环境需要删除这两个JS引用-->
+    <script type="text/javascript" src="../data/mock_data.js"></script> 
+    -->
 
- 
+    <!--END 正式环境需要删除这两个JS引用-->
+    <!--
+    <script src="../scripts/es5-shim.min.js"></script>
+    <script src="../scripts/es5-sham.min.js"></script>
+    <script src="../scripts/json3.min.js"></script> 
+    <script src="https://cdn.bootcss.com/es6-promise/4.1.1/es6-promise.min.js"></script>
+    <script src="https://cdn.bootcss.com/es6-promise/4.1.1/es6-promise.auto.min.js"></script>
+    -->
 
 
   </body>

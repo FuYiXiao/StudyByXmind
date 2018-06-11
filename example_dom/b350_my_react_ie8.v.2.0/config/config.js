@@ -43,13 +43,19 @@ const l_s_assetsPublicPath = (process.env.NODE_ENV === 'production'? l_s_prodAss
 
 //配置输出的文件名,根据静态资源路径路径指定输出路径
 const entryObj = {};
-entryObj[(l_s_assetsPublicPath + "scripts/index")] = path.resolve(l_s_currentPath, 'src/main.js' );
+
+entryObj[(l_s_assetsPublicPath + "scripts/supprot_ie8")] = path.resolve(l_s_currentPath, 'src/support_ie8.js' );
+entryObj[(l_s_assetsPublicPath + "scripts/main")] = path.resolve(l_s_currentPath, 'src/main.js' );
+// entryObj[(l_s_assetsPublicPath + "scripts/index")] = path.resolve(l_s_currentPath, 'src/index.js' );
+
+//entryObj[(l_s_assetsPublicPath + "scripts/index")] = path.resolve(l_s_currentPath, 'src/main.js' );
+
 
 //是否复制公共资源到项目
 const l_b_ifCopyPub_res = false;
 
 //是否压缩JS
-const l_b_ifCompassJs = true;
+const l_b_ifCompassJs = false;
 
 //是否将样式写入到HTML页面中
 const l_b_ifCssInsertHtml = false;
@@ -241,23 +247,23 @@ module.exports = {
       })
       */
       //ie8 兼容的系列处理
-      new webpack.optimize.UglifyJsPlugin({
-          //是否压缩JS的写法
-          test: l_b_ifCompassJs? /\.js($|\?)/i : /\.tc130($|\?)/i,
-          compress: {screw_ie8: false},
-          output: {screw_ie8: false},
+      // new webpack.optimize.UglifyJsPlugin({
+      //     //是否压缩JS的写法
+      //     test: l_b_ifCompassJs? /\.js($|\?)/i : /\.tc130($|\?)/i,
+      //     compress: {screw_ie8: false},
+      //     output: {screw_ie8: false},
 
-          //是否进行名称混乱
-          /*
-          mangle: {
-            screw_ie8: false, 
-            except:['$super','$','exports','require']
-          }, 
-          */
-          mangle:false,
-          sourceMap: true,
-          support_ie8: true
-      })
+      //     //是否进行名称混乱
+      //     /*
+      //     mangle: {
+      //       screw_ie8: false, 
+      //       except:['$super','$','exports','require']
+      //     }, 
+      //     */
+      //     mangle:false,
+      //     sourceMap: true,
+      //     support_ie8: true
+      // })
       
     ],
 

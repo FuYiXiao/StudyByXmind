@@ -30,18 +30,20 @@ window.GetLengthByCodeOrCut = function(str,cutStrLength,ifAddDot) {
     }
     if(ifNeedCut&&cutStrLength>=realLength){
       nowCutStr=nowCutStr+str.charAt(i);
-    }else{
-      hasCutStr=ifNeedCut?true:false;
     }
   };
+  if(ifNeedCut&&cutStrLength<realLength){
+    hasCutStr=true;
+  }
   return {
     hasCut:hasCutStr,
     realLength:realLength,
     cutLength:cutStrLength,
-    cutStr:ifAddDot?(nowCutStr+"..."):nowCutStr,
+    cutStr:hasCutStr?(ifAddDot?(nowCutStr+"..."):nowCutStr):str,
     fullStr:str
   }
 };
+
 
 module.exports = {
     "GetLengthByCodeOrCut":GetLengthByCodeOrCut

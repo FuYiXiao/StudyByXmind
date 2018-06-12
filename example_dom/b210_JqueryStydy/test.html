@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title>Style Guide</title>
+
+  <meta name="description" content="不超过150个字符">
+  <meta name="keywords" content="">
+  <meta name="author" content="name, email@gmail.com">
+
+  <!-- 为移动设备添加 viewport -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script type="text/javascript" src="jquery.min.js"></script>
+</head>
+<body>
+
+<script type="text/javascript">
+
+
+
+    $.ajaxSetup({
+        url: "/xmlhttp/",
+        //禁止全局触发ajax事件 设置为false,
+        global: true,
+        type: "POST"
+    });
+
+    $("html").ajaxStart(function(param1,param2,param3){
+        console.log("***ajaxStart");
+        console.log(param1);
+        console.log(param2);
+        console.log(param3);
+    });
+
+
+    $("html").on("ajaxSend",function(jqueryEvent,request,settings){
+        console.log("***ajaxSend");
+        console.log(jqueryEvent);
+        console.log(request);
+        console.log(settings);
+    });
+
+
+    $("html").ajaxSuccess(function(param1,param2,param3){
+        console.log("***ajaxSuccess");
+        console.log(param1);
+        console.log(param2);
+        console.log(param3);
+    });
+
+    $("html").ajaxError(function(param1,param2,param3){
+        console.log("***ajaxError");
+        console.log(param1);
+        console.log(param2);
+        console.log(param3);
+    });
+
+
+    $("html").ajaxComplete(function(param1,param2,param3){
+        console.log("***ajaxComplete");
+        console.log(param1);
+        console.log(param2);
+        console.log(param3);
+    });
+
+
+    $("html").ajaxStop(function(param1,param2,param3){
+        console.log("***ajaxStop");
+        console.log(param1);
+        console.log(param2);
+        console.log(param3);
+    });
+
+
+    $.ajaxPrefilter( "xml html script json jsonp text", function( options, originalOptions, jqXHR ) {
+        console.log("***ajaxPrefilter---1");
+        console.log(options);
+        console.log(originalOptions);
+        console.log(jqXHR);
+    });
+	
+    $.ajaxPrefilter(function( options, originalOptions, jqXHR ) {
+        console.log("***ajaxPrefilter---2");
+        console.log(options);
+        console.log(originalOptions);
+        console.log(jqXHR);
+    });
+
+
+    $.ajax({
+        url:"test.html"
+    });
+
+	
+
+</script>
+
+
+</body>
+</html>

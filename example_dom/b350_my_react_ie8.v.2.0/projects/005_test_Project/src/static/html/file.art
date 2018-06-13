@@ -1,0 +1,6 @@
+<% if (user) { %>
+  <h2><%= user.name %></h2>
+<% } %>
+{{each list as value index}}  
+  <div>{{index}}:{{value}}</div>  
+{{/each}}  

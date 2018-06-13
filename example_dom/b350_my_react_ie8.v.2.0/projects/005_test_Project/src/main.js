@@ -58,6 +58,10 @@ require.ensure('./testObj',function(require){
     console.log(testObj);
 });
 
+var fileart = require("./static/html/file.art");
+console.log( fileart );
+console.log(  fileart(data)   );
+document.getElementById("content").innerHTML = fileart(data) ;
 
 
 // var str = '{"name":"user","password":"psd","sex":"man","age":"120"}';

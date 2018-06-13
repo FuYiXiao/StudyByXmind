@@ -244,6 +244,13 @@ module.exports = {
           }
         }
       },
+      //加载art所需要的加载器
+      {
+           test: /\.art$/,
+           loader: 'art-template-loader'
+      }
+
+      
     ]
   },
   

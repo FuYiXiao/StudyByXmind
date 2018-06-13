@@ -1,0 +1,128 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<script>var _ctx = "/fkpt";</script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>风险推送</title>
+
+  <link href="../pub_res/scripts/frames/servyou_miniui_v1.0.003/themes/default/miniui.css" rel="stylesheet">
+  <link href="../pub_res/scripts/frames/servyou_miniui_v1.0.003/themes/blue/skin.css" rel="stylesheet">
+
+  <link href="../city_picker/city-picker.css" rel="stylesheet">
+
+  <link href="../css/common_style.css" rel="stylesheet">
+  
+
+
+</head>
+<body>
+   <input id="xxly_tmp" value="" class="mini-hidden" type="hidden" />
+   
+   <input id="thcxts_kg"  type="hidden"  value="Y"/>
+   <input id="sendByNsr_kg" type="hidden" value="Y"/>
+    
+    <div class="box">
+        <div class="search_tag" id="search_tag">
+            <a href="JavaScript:;" class="img_close"> </a> 查询条件
+        </div>
+        
+        <div id="search_area">
+            <input class="mini-hidden" name="fhURL" id="fhURL" value="/fkpt/fxgl/pages/fxts/fxgl_fxxxts.webfaster?p=1&openTabId=010603" type="hidden" />
+            <input class="mini-hidden" name="isQuery" id="isQuery" value="" type="hidden" />
+            <input class="mini-hidden" type="hidden" name="openTabId" id="openTabId" value="010603" />
+            <input class="mini-hidden" type="hidden" name="p" id="p" value="" />
+            <table width="100%" border=0 cellPadding=0 cellSpacing=0 class="search">
+                <tr>
+                    <th width="15%">信息来源：</th>
+                    <td width="35%"  nowrap='nowrap'>
+                    <input class="mini-combobox" valueField="DM" name="xxly" id="xxly"
+                        textField="MC" showNullItem="true" 
+                        url="fxgl_fxxxts_xxly_query.json?logic-name=fxgl_fxxxts_xxly_query"
+                        value="" />
+                    </td>
+                    <th width="15%">信息生成时间：</th>
+                    <td width="35%"  nowrap='nowrap'>
+                    <input style="width: 40%" name="yxqq" id="yxqq" type="text" 
+                        dateFmt='yyyy-MM' isShowClear="false"
+                        allowInput='true' class="mini-wdatepicker" value="" />
+                                        至
+                    <input style="width: 40%" name="yxqz" id="yxqz" type="text"
+                        dateFmt='yyyy-MM' isShowClear="false"
+                        allowInput='true' class="mini-wdatepicker" value="" />
+                    </td>
+                </tr>
+                <tr>
+                    <th width="15%">地区选择：</th>
+                    <td width="35%"  nowrap='nowrap' style="position:relative;">
+                      <input id="target" readonly type="text" data-toggle="city-picker" value="" placeholder="" data-responsive="true" style="width:100%;" >
+                    </td>
+                    <th width="15%">信息生成时间：</th>
+                    <td width="35%"  nowrap='nowrap'>
+      
+                    </td>
+                </tr>
+                <tfoot>
+                    <tr>
+                        <td colspan="4"><input type="button" value="查询" name="B15"
+                            class="tablebutton_2" onclick="doSearch()" /> <input type="button"
+                            value="重置" name="B152" class="tablebutton_2" onclick="doreset()" /></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+    
+    
+    <div class="list_tag box-center">结果列表 </div>
+    <div class="mini-fit box-center">
+        <div id="datagrid" class="mini-datagrid" allowAlternating="true" 
+            borderStyle="border-bottom:0px;" pageSize="20"
+            url="/fxgl_fxxxts_query.json?logic-name=fxgl_fxxxts_query" idField="XXLY_DM" 
+            pager="#pager1" ondrawcell="onActionRenderer" showEmptyText="false"
+            multiSelect="true">
+            <div property="columns">
+                <div width="30" type="checkcolumn" allowMove="false" allowResize="false" field="chk"></div>
+                <div width="100" name="XXLY_MC" field="XXLY_MC" allowMove="false">信息来源</div>
+                <div width="240" name="XX_MC" field="XX_MC">名称</div>
+                <div width="80" name="XXCSYF_CK" field="XXCSYF_CK">信息</br>生成时间</div>
+                <div header="信息数量">
+                    <div property="columns">
+                        <div width="80" name="XXZL" field="XXZL" >信息总量</div>                
+                        <div width="80" name="WTSL" field="WTSL" >未推送数量</div>       
+                        <div width="80" name="YTSL" field="YTSL" >已推送数量</div>       
+                        <div width="80" name="THSL" field="THSL" >退回数量</div>        
+                    </div>
+                </div>
+                <div width="80" name="TSZT_MC" field="TSZT_MC" allowMove="false">推送状态</div>
+                <div width="160" name="opt" field="opt" align="left" allowMove="false">操作</div>
+            </div>
+        </div>
+    </div>
+    
+    
+    <div class="listbottom_div box-bottom" id="listbottom_div">
+        <div class="listbutton_div pub_listbutton_div">
+        <input name="Submit22" type="button" onclick="dots()" class="list_button_ts" onmouseover="this.className='list_button_ts_o test'" onmouseout="this.className='list_button_ts test'" value="推送">
+            <span class="line"></span>
+        </div>
+        <div id="pager1" class="mini-pager"></div>
+    </div>
+    
+   
+</body>
+</html>
+
+
+    <script type="text/javascript" src="../pub_res/scripts/librarys/jquery.v1.7.2.js"></script>
+    <script type="text/javascript" src="../pub_res/scripts/frames/servyou_miniui_v1.0.003/miniui.js"></script>
+    <script type="text/javascript" src="../city_picker/city-picker.data.js"></script>
+    <script type="text/javascript" src="../city_picker/city-picker.js"></script>
+    <script type="text/javascript">
+      $('#target').citypicker();
+    </script>
+
+
+</script>
+

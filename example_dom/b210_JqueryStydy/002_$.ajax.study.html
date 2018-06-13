@@ -28,52 +28,43 @@
         type: "POST"
     });
 
-    $("html").ajaxStart(function(param1,param2,param3){
+    $("html").ajaxStart(function(jqueryEvent){
         console.log("***ajaxStart");
-        console.log(param1);
-        console.log(param2);
-        console.log(param3);
+        console.log(jqueryEvent);
     });
 
-
-    $("html").on("ajaxSend",function(jqueryEvent,request,settings){
+    $("html").on("ajaxSend",function(jqueryEvent,jqXHR,options){
         console.log("***ajaxSend");
         console.log(jqueryEvent);
-        console.log(request);
-        console.log(settings);
+        console.log(jqXHR);
+        console.log(options);
     });
 
-
-    $("html").ajaxSuccess(function(param1,param2,param3){
+    $("html").on("ajaxSuccess",function(jqueryEvent,jqXHR,options){
         console.log("***ajaxSuccess");
-        console.log(param1);
-        console.log(param2);
-        console.log(param3);
+        console.log(jqueryEvent);
+        console.log(jqXHR);
+        console.log(options);
     });
 
-    $("html").ajaxError(function(param1,param2,param3){
+    $("html").on("ajaxError",function(jqueryEvent,jqXHR,options){
         console.log("***ajaxError");
-        console.log(param1);
-        console.log(param2);
-        console.log(param3);
+        console.log(jqueryEvent);
+        console.log(jqXHR);
+        console.log(options);
     });
 
-
-    $("html").ajaxComplete(function(param1,param2,param3){
+    $("html").on("ajaxComplete",function(jqueryEvent,jqXHR,options){
         console.log("***ajaxComplete");
-        console.log(param1);
-        console.log(param2);
-        console.log(param3);
+        console.log(jqueryEvent);
+        console.log(jqXHR);
+        console.log(options);
     });
 
-
-    $("html").ajaxStop(function(param1,param2,param3){
+    $("html").on("ajaxStop",function(jqueryEvent){
         console.log("***ajaxStop");
-        console.log(param1);
-        console.log(param2);
-        console.log(param3);
+        console.log(jqueryEvent);
     });
-
 
     $.ajaxPrefilter( "xml html script json jsonp text", function( options, originalOptions, jqXHR ) {
         console.log("***ajaxPrefilter---1");
@@ -87,8 +78,8 @@
         console.log(options);
         console.log(originalOptions);
         console.log(jqXHR);
+		//jqXHR.abort();
     });
-
 
     $.ajax({
         url:"test.html"

@@ -104,7 +104,14 @@ module.exports = {
 
           //只在页面有改变，才触发改变
           cache:true,
-
+          // 手动排序,按照 chunks 的引入顺序加载
+          chunksSortMode:"manual",
+          //加载文件的列表
+          chunks:[
+            'scripts/common',
+            (l_s_assetsPublicPath + "scripts/supprot_ie8"),
+            (l_s_assetsPublicPath + "scripts/index")
+          ]
           // inlineSource: '.(css)$' // 这里的配置是配合 HtmlWebpackInlineSourcePlugin
         }),
         // 将资源内联到 HTML 只会内联 CSS 和 JS（通过webpack打包处理的js,其他静态JS不处理），绝对路径定位可以使用，相对路径会报错

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>    <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="zh-cmn-Hans"> <![endif]-->
+<!--[if IE 7]>     <html class="no-js lt-ie9 lt-ie8" lang="zh-cmn-Hans"> <![endif]-->
+<!--[if IE 8]>     <html class="no-js lt-ie9" lang="zh-cmn-Hans"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-cmn-Hans"> <!--<![endif]-->
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <!-- 为移动设备添加 viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>首页</title>
+
+    <link href="../pub_res/scripts/frames/servyou_miniui_v1.0.003/themes/default/miniui.css" rel="stylesheet">
+
+    <link href="../city_picker/city-picker.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+    
+    <div class="pub-wrapper"  >
+
+      <div style="position:relative;">
+        <input id="target" readonly type="text" data-toggle="city-picker" value="" placeholder="请选择地址" style="width:200px;" >
+      </div>
+
+    </div><!--END class="page-wrapper"-->
+
+
+    <script type="text/javascript" src="../pub_res/scripts/librarys/jquery.v1.7.2.js"></script>
+    <script type="text/javascript" src="../pub_res/scripts/frames/servyou_miniui_v1.0.003/miniui.js"></script>
+    <script type="text/javascript" src="../city_picker/city-picker.data.js"></script>
+    <script type="text/javascript" src="../city_picker/city-picker.js"></script>
+    <script type="text/javascript">
+      $('#target').citypicker();
+    </script>
+
+  </body>
+</html>

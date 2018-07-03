@@ -18,6 +18,9 @@ const StyleExtHtmlWebpackPlugin =  require('style-ext-html-webpack-plugin');
 //内联样式到DIV里面插件
 const HtmlWebpackInlineStylePlugin =  require('html-webpack-inline-style-plugin');
 
+//转码插件
+var EncodingPlugin = require('webpack-encoding-plugin');
+
 //设置配置根目录
 const l_s_rootPath = path.resolve(__dirname, '../');
 
@@ -271,6 +274,12 @@ module.exports = {
       //     sourceMap: true,
       //     support_ie8: true
       // })
+
+      //对输出文件进行编码GBK
+      new EncodingPlugin({
+        encoding: 'GBK',
+        test:/(\.js|\.css|\.html)($|\?)/i
+      })
       
     ],
 

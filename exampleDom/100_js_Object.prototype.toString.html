@@ -32,6 +32,10 @@
     showType:function(o){
       return Object.prototype.toString.call(o);
     },
+	// 有效的值
+	isValid:function(o){
+	  return (typeof o !="undefined" ) && o!=null; 
+	},
     // Object
     isObj:function(o){
       return Object.prototype.toString.call(o)=="[object Object]";
@@ -122,6 +126,10 @@
   var testRegExp = /test/;
   var testError = new Error();
   
+  
+  console.log(judgeType.isValid(testNULL));
+  console.log(judgeType.isValid(testUndefined));
+  console.log(judgeType.isValid(testString));
   
   
   document.write( "<br/>"+"testObj:" +testObj +"--@"+ judgeType.showType(testObj) +"@"+ judgeType.isObj(testObj) ); 

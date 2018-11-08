@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>    <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="zh-cmn-Hans"> <![endif]-->
+<!--[if IE 7]>     <html class="no-js lt-ie9 lt-ie8" lang="zh-cmn-Hans"> <![endif]-->
+<!--[if IE 8]>     <html class="no-js lt-ie9" lang="zh-cmn-Hans"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-cmn-Hans"> <!--<![endif]-->
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <!-- 为移动设备添加 viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>index</title>
+
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+
+    <link rel="stylesheet" href="">
+
+
+
+  </head>
+
+  <body>
+  
+  
+  <div id="TestDiv"></div>
+
+  
+  <script>
+  var browserSystem = (function(){
+  
+    var navigator = window.navigator;
+	var userAgent = navigator.userAgent;
+    var appVersion = navigator.appVersion;
+	var userAgentLower = userAgent.toLowerCase();
+	
+	// 是否是window的操作系统
+	var isWin = (navigator.platform == "Win32") || (navigator.platform == "Windows");
+	// 是否是Mac
+	var isMac = (navigator.platform == "Mac68K") || (navigator.platform == "MacPPC") || (navigator.platform == "Macintosh") || (navigator.platform == "MacIntel");
+	  
+	  
+	return {
+	  navigator:navigator,
+	  userAgent:userAgent,
+	  userAgentLower:userAgentLower,
+	  appVersion:appVersion,
+	  // 使用语言
+	  language: (navigator.browserLanguage ||navigator.language).toLowerCase(),
+	  
+	  system:{},
+	  systemVersion:{},
+	  browser:{},
+	  browserVersion:{},
+	  
+	  
+	  // opera浏览器内核
+	  isOpera:userAgent.indexOf('Presto') >-1,
+	  
+	  // 火狐内核
+	  isFirefox: userAgent.indexOf('Gecko') > -1&& userAgent.indexOf('KHTML') == -1,
+	  
+	  //苹果、谷歌内核
+	  isChrome:userAgent.indexOf('AppleWebKit')> -1, 
+	  
+	  // 微信的内置浏览器
+	  isWeiXin:userAgent.indexOf('MicroMessenger') >-1,
+	  
+	  isIE6:{},
+	  
+	  isIE8:{},
+	  
+	  isIE9:{},
+	  
+	  isLtIE8:{},
+	  
+	  isLtIE9:{},
+	  
+	  // IE浏览器内核
+	  isIE:userAgent.indexOf('Trident') >-1,
+	  
+	  // 是否为移动终端 对应的相反就是PC
+	  isMobile:!!userAgent.match(/AppleWebKit.*Mobile.*/),
+	  
+	  // 是否web应该程序，没有头部与底部
+	  isWebApp: userAgent.indexOf('Safari') == -1,
+	  
+	  // ios终端
+	  // isIos: !!userAgent.match(/\(i[^;]+;( U;)?CPU.+Mac OS X/), 
+	  isIos:    !!userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/),
+	  
+	  // android终端或uc浏览器
+	  isAndroid: userAgent.indexOf('Android') >-1 || userAgent.indexOf('Linux') > -1,
+	  // android终端
+	  isAndroid2: userAgent.indexOf('Android') > -1 || userAgent.indexOf('Adr') > -1,
+	  
+	  // 是否为iPhone或者QQHD浏览器
+	  isIPhone: userAgent.indexOf('iPhone') >-1, 
+	  
+	  // 是否iPad
+	  isIPad: userAgent.indexOf('iPad') > -1, 
+	  
+	  // 是否是window的操作系统
+	  isWin: isWin, 
+	  
+	  // 是否是Mac
+	  isMac: isMac,
+	  
+	  // 是否是Unix
+	  isUnix: (navigator.platform == "X11") && !isWin && !isMac,
+	  // 是否是 Linux
+	  isLinux : (String(navigator.platform).indexOf("Linux") > -1),
+	  
+	  // 是否是 Win2000
+      isWin2000 : userAgent.indexOf("Windows NT 5.0") > -1 ||userAgent.indexOf("Windows 2000") > -1,
+	  
+	  // 是否是 WinXP	
+      isWinXP : userAgent.indexOf("Windows NT 5.1") > -1 || userAgent.indexOf("Windows XP") > -1,
+	  
+      // 是否是 Win2003
+      isWin2003 : userAgent.indexOf("Windows NT 5.2") > -1 || userAgent.indexOf("Windows 2003") > -1,
+	  
+	  // 是否是 WinVista
+      isWinVista: userAgent.indexOf("Windows NT 6.0") > -1 || userAgent.indexOf("Windows Vista") > -1,
+	  
+      // 是否是 Win7
+      isWin7 : userAgent.indexOf("Windows NT 6.1") > -1 || userAgent.indexOf("Windows 7") > -1,
+
+	
+	}
+  })();
+  
+  console.log(browserSystem);
+  
+ 
+  //whatBrowser:function(){}
+
+ 
+  </script>
+  
+
+  </body>
+
+</html>

@@ -30,6 +30,10 @@
 
   
   <script>
+  
+  
+  
+  
   var browserSystem = (function(){
   
     var navigator = window.navigator;
@@ -85,7 +89,7 @@
 	  // 是否为移动终端 对应的相反就是PC
 	  isMobile:!!userAgent.match(/AppleWebKit.*Mobile.*/),
 	  
-	  // 是否web应该程序，没有头部与底部
+	  // 是否web应该程序，没有头部与底部 , chrome下为false，IE下为true
 	  isWebApp: userAgent.indexOf('Safari') == -1,
 	  
 	  // ios终端
@@ -111,6 +115,7 @@
 	  
 	  // 是否是Unix
 	  isUnix: (navigator.platform == "X11") && !isWin && !isMac,
+	  
 	  // 是否是 Linux
 	  isLinux : (String(navigator.platform).indexOf("Linux") > -1),
 	  

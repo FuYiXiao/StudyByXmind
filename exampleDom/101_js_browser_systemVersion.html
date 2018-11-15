@@ -28,10 +28,6 @@
 
   <script>
 
-document.addEventListener("visibilitychange",function(){
-    console.log( document.hidden)
-})
-
 
   var browserSystem = (function(){
   
@@ -70,9 +66,39 @@ document.addEventListener("visibilitychange",function(){
 	  // 浏览器 微信的内置浏览器
 	  _this.isWeiXin = userAgent.indexOf('MicroMessenger') >-1;
 	  
+	  // 浏览器 UC浏览器
+	  _this.isUc = /ucweb/.test(userAgentLower) || /ucbrowser/.test(userAgentLower);
+
+	  // 浏览器 360浏览器
+	  _this.is360 = /360se/.test(userAgentLower);
+	  
+	  // 浏览器 QQ浏览器
+	  _this.isQQ = /qqbrowser/.test(userAgentLower);
+	  
+	  
+	  //-------------------------------------------------------------------------------------------------
+
 	  // 浏览器 IE浏览器内核
 	  _this.isIE = userAgent.indexOf('Trident') >-1;
 	  
+	  // 浏览器 IE6 浏览器
+	  _this.isIE6 = /msie 6.0/.test(userAgentLower);
+	  
+	  // 浏览器 IE7 浏览器
+	  _this.isIE7 = /msie 7.0/.test(userAgentLower);	  
+
+	  // 浏览器 IE8 浏览器
+	  _this.isIE8 = /msie 8.0/.test(userAgentLower);
+	  
+	  // 浏览器 IE9 浏览器
+	  _this.isIE9 = /msie 9.0/.test(userAgentLower);
+	  
+	  // 浏览器 IE10 浏览器
+	  _this.isIE10 = /msie 10.0/.test(userAgentLower);
+	    
+	  // 浏览器 IE11 浏览器
+	  _this.isIE11 = /msie 11.0/.test(userAgentLower);
+     
 	  //-------------------------------------------------------------------------------------------------
 	  
 	  // 是否为移动终端 对应的相反就是PC

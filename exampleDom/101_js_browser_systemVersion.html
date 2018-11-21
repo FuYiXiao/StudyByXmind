@@ -22,7 +22,7 @@
   </head>
 
   <body>
-  
+
   
   <div id="TestDiv"></div>
 
@@ -75,6 +75,19 @@
 	  // 浏览器 QQ浏览器
 	  _this.isQQ = /qqbrowser/.test(userAgentLower);
 	  
+	  //获得chrome浏览器版本
+	  _this.getChromeVersion = function() {
+	  
+	    var userAgent = _this.userAgent;
+		var v = /(?:Chrome\/)(\d+)(?:\.)/i.exec(userAgent);
+		
+		if( _this.isChrome == true ){
+			return v[v.length - 1];
+		}else{
+			return -1;
+		}
+	     
+	  };
 	  
 	  //-------------------------------------------------------------------------------------------------
 
@@ -98,7 +111,43 @@
 	    
 	  // 浏览器 IE11 浏览器
 	  _this.isIE11 = /msie 11.0/.test(userAgentLower);
-     
+	  
+	  //获取IE的版本号
+	  _this.getIeVesrsion = function () {
+		var userAgent = _this.userAgent;
+		var isIE = userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1; //判断是否IE<11浏览器  
+		var isEdge = userAgent.indexOf("Edge") > -1 && !isIE; //判断是否IE的Edge浏览器  
+		var isIE11 = userAgent.indexOf('Trident') > -1 && userAgent.indexOf("rv:11.0") > -1;
+		if(isIE) {
+			var reIE = new RegExp("MSIE (\\d+\\.\\d+);");
+			reIE.test(userAgent);
+			var fIEVersion = parseFloat(RegExp["$1"]);
+			if(fIEVersion == 7) {
+				return 7;
+			} else if(fIEVersion == 8) {
+				return 8;
+			} else if(fIEVersion == 9) {
+				return 9;
+			} else if(fIEVersion == 10) {
+				return 10;
+			} else {
+				return 6;//IE版本<=7
+			}   
+		} else if(isEdge) {
+			return 'edge';//edge
+		} else if(isIE11) {
+			return 11; //IE11  
+		}else{
+			return -1;//不是ie浏览器
+		}
+	  };
+	  
+	  //是否低于IE10，是IE9 或者更低版本
+	  _this.isLtIE10 = ( _this.isIE && _this.getIeVesrsion() < 10 );
+	  
+	  // 是否低于IE9，是IE8 或者更低版本
+	  _this.isLtIE9 = ( _this.isIE && _this.getIeVesrsion() < 9 );
+	  
 	  //-------------------------------------------------------------------------------------------------
 	  
 	  // 是否为移动终端 对应的相反就是PC
@@ -162,27 +211,6 @@
 	}
 	
 	
-	var testData = {
-
-	  
-	  system:{},
-	  systemVersion:{},
-	  browser:{},
-	  browserVersion:{},
-	  
-	  isIE6:{},
-	  
-	  isIE8:{},
-	  
-	  isIE9:{},
-	  
-	  isLtIE8:{},
-	  
-	  isLtIE9:{},
-	  
-	  
-	  
-	};
 	
 	return backObj;
 	
@@ -192,10 +220,19 @@
   
   console.log(browserSystem);
   
-  //whatBrowser:function(){}
- 
+  //  browserSystem.getIeVesrsion()   browserSystem.isLtIE9    browserSystem.isLtIE10   browserSystem.getChromeVersion(); 
+
+
+
+
   </script>
   
   </body>
+
+
+  
+  
+  
+  
 
 </html>
